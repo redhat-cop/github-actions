@@ -1,0 +1,47 @@
+name: 'Source2Image'
+description: 'Create image using source2image'
+author: 'Red Hat CoP'
+icon: package
+color: purple
+inputs:
+  path:
+    description: 'Path to source code'
+    default: '.'
+    required: false
+  base:
+    description: 'source2image base image'
+    required: true
+  output_image:
+    description: 'resulting image'
+    required: true
+  image_pull_registry:
+    description: 'the registry containing the builder image'
+    required: false
+  image_pull_username:
+    description: 'the username to use for pulling the base image'
+    required: false
+  image_pull_password:
+    description: 'the password to use for pulling the base image'
+    required: false
+  image_push_registry:
+    description: 'the registry to push the built image to'
+    required: true
+  image_push_username:
+    description: 'the username to use for pushing the built image'
+    required: true
+  image_push_password:
+    description: 'the password to use for pushing the built image'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.base }}
+    - ${{ inputs.output_image }}
+    - ${{ inputs.image_pull_registry }}
+    - ${{ inputs.image_pull_username }}
+    - ${{ inputs.image_pull_password }}
+    - ${{ inputs.image_push_registry }}
+    - ${{ inputs.image_push_username }}
+    - ${{ inputs.image_push_password }}
