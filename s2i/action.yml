@@ -33,7 +33,7 @@ inputs:
     description: 'the password to use for pushing the built image'
     required: true
   image_tags:
-    description: 'tag the image with additional tags'
+    description: 'tag the image with additional tags (comma separated)'
     default: 'latest'
     required: false
 
