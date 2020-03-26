@@ -29,8 +29,9 @@ s2i build "${SRC}" "${BASE}" "${OUTPUT_IMAGE}"
 # Push to output registry
 docker push "${OUTPUT_IMAGE}"
 # Add additional tags
-for tag in $IMAGE_TAGS; do
-  TAG=$(echo $OUTPUT_IMAGE|cut -d: -f1):${tag}
-  docker tag $OUTPUT_IMAGE $TAG
-  docker push $LATEST_TAG
-done
+echo "TAGS: ${IMAGE_TAGS}"
+#for tag in $IMAGE_TAGS; do
+#  TAG=$(echo $OUTPUT_IMAGE|cut -d: -f1):${tag}
+#  docker tag $OUTPUT_IMAGE $TAG
+#  docker push $LATEST_TAG
+#done
