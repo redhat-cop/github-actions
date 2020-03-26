@@ -12,7 +12,7 @@ IMAGE_PULL_PASSWORD=$6
 IMAGE_PUSH_REGISTRY=$7
 IMAGE_PUSH_USERNAME=$8
 IMAGE_PUSH_PASSWORD=$9
-IMAGE_TAGS=$10
+IMAGE_TAGS=${10}
 
 if [ -z $IMAGE_PULL_USERNAME ]; then
     echo "Skipping login for image pull - username not set."
