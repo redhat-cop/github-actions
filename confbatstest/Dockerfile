@@ -24,5 +24,11 @@ RUN export BATS_VERSION=master && \
     ln -s /opt/bats/bin/bats /usr/local/bin/bats && \
     bats --version
 
+RUN export HELM_VERSION=3.2.1 && \
+    wget https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
+    tar -C /tmp -xzf helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
+    ln -s /tmp/linux-amd64/helm /usr/local/bin/helm && \
+    helm version
+
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
