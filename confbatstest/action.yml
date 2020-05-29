@@ -1,0 +1,15 @@
+name: 'confbatstest'
+description: 'Run conftest using BATS'
+author: 'Red Hat CoP'
+icon: package
+color: purple
+inputs:
+  tests:
+    description: "BATS test bash file"
+    default: "_test/tests.bats"
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.tests }}
