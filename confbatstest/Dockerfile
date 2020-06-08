@@ -1,6 +1,6 @@
 FROM docker:19.03.2
 
-LABEL version="1.0.0"
+LABEL version="1.1.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/confbatstest"
 LABEL maintainer="Red Hat CoP"
@@ -9,7 +9,7 @@ LABEL "com.github.actions.description"="Run conftest using BATS"
 LABEL "com.github.actions.icon"="package"
 LABEL "com.github.actions.color"="purple"
 
-RUN apk add --update bash git
+RUN apk add --update bash git py-pip
 
 RUN export CONFTEST_VERSION=0.18.2 && \
     wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
@@ -29,6 +29,15 @@ RUN export HELM_VERSION=3.2.1 && \
     tar -C /tmp -xzf helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     ln -s /tmp/linux-amd64/helm /usr/local/bin/helm && \
     helm version
+
+RUN export JQ_VERSION=1.6 && \
+    wget -P /tmp https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
+    chmod +x /tmp/jq-linux64 && \
+    ln -s /tmp/jq-linux64 /usr/local/bin/jq && \
+    jq --version
+
+RUN pip install yq && \
+    yq --version
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
