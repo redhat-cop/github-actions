@@ -1,0 +1,31 @@
+name: Test s2i
+
+on:
+  push:
+    paths:
+      - .github/workflows/s2i.yaml
+      - s2i/**
+  pull_request:
+    paths:
+      - .github/workflows/s2i.yaml
+      - s2i/**
+
+jobs:
+  s2i:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone example springboot code to build via s2i
+        run: |
+          git clone https://github.com/redhat-cop/spring-rest.git s2i/_test/spring-rest
+
+      - uses: ./s2i
+        with:
+          base: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
+          path: s2i/_test/spring-rest
+          output_image: quay.io/redhat-cop/github-actions-s2i:ci-test
+          image_push_registry: quay.io
+          image_push_username: ${{ secrets.QUAY_USERNAME }}
+          image_push_password: ${{ secrets.QUAY_PASSWORD }}
