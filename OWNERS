@@ -1,8 +1,10 @@
 # See the OWNERS docs at https://go.k8s.io/owners
 
 reviewers:
+  - garethahealy
   - jacobsee
   - tylerauerbeck
 approvers:
+  - garethahealy
   - jacobsee
   - tylerauerbeck
