@@ -1,0 +1,23 @@
+name: Test confbatstest
+
+on:
+  push:
+    paths:
+      - .github/workflows/confbatstest.yaml
+      - confbatstest/**
+  pull_request:
+    paths:
+      - .github/workflows/confbatstest.yaml
+      - confbatstest/**
+
+jobs:
+  conftest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Conftest
+        uses: ./confbatstest
+        with:
+          tests: confbatstest/_test/conftest.sh
