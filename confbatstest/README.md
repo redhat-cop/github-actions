@@ -1,6 +1,10 @@
 # confbatstest GitHub Action
 
 This action uses [BATS](https://github.com/bats-core/bats-core) and [conftest](https://github.com/open-policy-agent/conftest).
+It also contains several tools which are used for JSON and YAML manipulation:
+- helm
+- jq
+- yq
 
 ## Usage
 
@@ -8,5 +12,5 @@ This action uses [BATS](https://github.com/bats-core/bats-core) and [conftest](h
     - name: Conftest
       uses: redhat-cop/github-actions/confbatstest@master
       with:
-        tests: _test/tests.bats
+        tests: _test/conftest.sh
 ```
