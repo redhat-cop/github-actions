@@ -33,4 +33,4 @@ We're looking to keep the individiaul GitHub Actions at the root of this reposit
 
 If you have an example workflow that you would like to contribute, you can similarly create a new directory under the existing `workflows` directory. From there you can then add your content and descriptions, etc.
 
-**Note:** For workflows, we're looking for something more than you can find in individual 'how-to's` for a single action. The ideal workflow example would be pulling together sets of actions or multiple workflows to accomplish a larger goal.
+**Note:** For workflows, we're looking for something more than you can find in individual `how-to's` for a single action. The ideal workflow example would be pulling together sets of actions or multiple workflows to accomplish a larger goal.
