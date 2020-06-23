@@ -1,0 +1,24 @@
+name: 'redhat-csp-download'
+description: 'Run redhat-csp-download to download resources from the Red Hat Customer Portal.'
+author: 'Red Hat CoP'
+branding:
+  icon: monitor
+  color: purple
+inputs:
+  rh_username:
+    description: "Username to download product"
+    required: true
+  rh_password:
+    description: "Password to download product"
+    required: true
+  download:
+    description: "JSON array of files to download"
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.rh_username }}
+    - ${{ inputs.rh_password }}
+    - ${{ inputs.download }}
