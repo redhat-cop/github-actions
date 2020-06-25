@@ -18,7 +18,7 @@ If you would like to contribute to this repository, you can do one of the follow
 
 ### GitHub Action
 
-If you have an action that you'd like to contribute, you can create a directory at the root of the repository and then create your action inside of there. This would look something like
+If you have an action that you'd like to contribute, you can create a directory at the root of the repository and then create your action inside of there. This would look something like:
 
 ```sh
 /my-awesome-action
@@ -27,7 +27,7 @@ If you have an action that you'd like to contribute, you can create a directory 
   ... etc.
 ```
 
-We're looking to keep the individiaul GitHub Actions at the root of this repository as it reduces the complexity of importing them into external workflows.
+We're looking to keep the individual GitHub Actions at the root of this repository as it reduces the complexity of importing them into external workflows.
 
 ### Workflows
 
