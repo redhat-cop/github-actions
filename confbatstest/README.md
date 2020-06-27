@@ -1,3 +1,5 @@
+![Test confbatstest](https://github.com/redhat-cop/github-actions/workflows/Test%20confbatstest/badge.svg)
+
 # confbatstest GitHub Action
 
 This action uses [BATS](https://github.com/bats-core/bats-core) and [conftest](https://github.com/open-policy-agent/conftest).
