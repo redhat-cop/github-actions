@@ -1,0 +1,24 @@
+name: Test github-dispatches
+
+on:
+  push:
+    paths:
+      - .github/workflows/github-dispatches.yaml
+      - github-dispatches/**
+  pull_request:
+    paths:
+      - .github/workflows/github-dispatches.yaml
+      - github-dispatches/**
+
+jobs:
+  github-dispatches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: github-dispatches
+        uses: ./github-dispatches
+        with:
+          username_token: ${{ secrets.REPO_TOKEN }}
+          repo_array: '[{"url":"redhat-cop/rego-policies","event_type":"Trigger","client_payload":{"from-action":"github-dispatches"}}]'
