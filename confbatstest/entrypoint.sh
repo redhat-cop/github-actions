@@ -3,13 +3,32 @@
 set -e
 
 TESTS=$1
+POLICIES=$2
 
-mkdir policy
+mkdir -p policy
 
-conftest pull github.com/redhat-cop/rego-policies.git//policy --policy redhat-cop
-cp redhat-cop/*.rego policy
+for row in $(echo "${POLICIES}" | jq -c '.[]'); do
+  _jq() {
+    echo ${row} | jq -r ${1}
+  }
 
-conftest pull github.com/swade1987/deprek8ion.git//policies --policy deprek8ion
-cp deprek8ion/*.rego policy
+  name=$(_jq '.name')
+  url=$(_jq '.url')
 
-bats ${TESTS}
+  conftest pull ${url} --policy ${name}
+
+  for file in $(ls ${name}/*.rego | xargs) ; do
+    cp ${file} policy/${file////_}
+  done
+
+  rm -rf ${name}
+done
+
+if [ $(ls policy/ | wc -l) -lt 1 ]; then
+  echo "No policies found. Failing."
+  exit 1
+fi
+
+ls -lrt policy/
+
+exec bats ${TESTS}

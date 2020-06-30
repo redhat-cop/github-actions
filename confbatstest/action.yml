@@ -9,9 +9,14 @@ inputs:
     description: "BATS test bash file"
     default: "_test/conftest.sh"
     required: false
+  policies:
+    description: "JSON array of policies to pull via conftest pull. See: https://github.com/open-policy-agent/conftest/blob/master/docs/sharing.md"
+    default: '[{"name": "redhat-cop", "url":"github.com/redhat-cop/rego-policies.git//policy"},{"name": "deprek8ion", "url":"github.com/swade1987/deprek8ion.git//policies"}]'
+    required: false
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.tests }}
+    - ${{ inputs.policies }}
