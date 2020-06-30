@@ -9,7 +9,7 @@ LABEL "com.github.actions.description"="Run conftest using BATS"
 LABEL "com.github.actions.branding.icon"="monitor"
 LABEL "com.github.actions.branding.color"="purple"
 
-RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils && \
+RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils diffutils && \
     microdnf clean all
 
 RUN export CONFTEST_VERSION=0.19.0 && \
@@ -36,6 +36,12 @@ RUN export JQ_VERSION=1.6 && \
     chmod +x /tmp/jq-linux64 && \
     ln -s /tmp/jq-linux64 /usr/local/bin/jq && \
     jq --version
+
+RUN export OC_VERSION=4.4 && \
+    wget --no-verbose https://mirror.openshift.com/pub/openshift-v4/clients/oc/${OC_VERSION}/linux/oc.tar.gz && \
+    tar -C /tmp -xzf oc.tar.gz && \
+    ln -s /tmp/oc /usr/local/bin/oc && \
+    oc version
 
 RUN pip3 install yq && \
     yq --version
