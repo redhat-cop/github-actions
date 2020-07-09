@@ -7,6 +7,7 @@ It also contains several tools which are used for JSON and YAML manipulation:
 - helm
 - jq
 - yq
+- oc
 
 ## Usage
 
