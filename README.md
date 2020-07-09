@@ -8,6 +8,7 @@ This repository contains:
 
 ### Actions
 - [confbatstest](/confbatstest)
+- [redhat-csp-download](/redhat-csp-download)
 - [s2i](/s2i)
 
 ### Workflows

@@ -1,0 +1,41 @@
+name: Test redhat-csp-download
+
+on:
+  push:
+    paths:
+      - .github/workflows/redhat-csp-download.yaml
+      - redhat-csp-download/**
+  pull_request:
+    paths:
+      - .github/workflows/redhat-csp-download.yaml
+      - redhat-csp-download/**
+
+jobs:
+  redhat-csp-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: redhat-csp-download
+        uses: ./redhat-csp-download
+        with:
+          rh_username: ${{ secrets.RH_USERNAME }}
+          rh_password: ${{ secrets.RH_PASSWORD }}
+          download: '[{"file":"/github/workspace/eap-connectors.zip","url":"https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=37193"}]'
+
+      - name: Check downloaded file exists
+        run: |
+          if [ -z "${RH_USERNAME}" ] || [ -z "${RH_PASSWORD}" ]
+          then
+            echo "RH_USERNAME or RH_PASSWORD is empty. Skipping."
+            exit 0
+          fi
+          
+          FILE="eap-connectors.zip"
+          if [ -f "$FILE" ]; then
+            echo "$FILE exists."
+          else
+            echo "$FILE does not exist."
+            exit 1
+          fi
