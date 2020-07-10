@@ -11,10 +11,13 @@ LABEL "com.github.actions.branding.color"="purple"
 
 COPY ansible /ansible
 RUN microdnf install --assumeyes --nodocs python3 && \
-    microdnf clean all
+    microdnf clean all && \
+    python3 --version
 
 RUN pip3 install -r /ansible/requirements.txt && \
-    ansible --version
+    ansible --version && \
+    ansible-galaxy --version && \
+    ansible-playbook --version
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

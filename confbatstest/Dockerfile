@@ -10,7 +10,12 @@ LABEL "com.github.actions.branding.icon"="monitor"
 LABEL "com.github.actions.branding.color"="purple"
 
 RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils diffutils && \
-    microdnf clean all
+    microdnf clean all && \
+    tar --version && \
+    wget --version && \
+    python3 --version && \
+    git --version && \
+    diff --version
 
 RUN export CONFTEST_VERSION=0.19.0 && \
     wget --no-verbose https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
