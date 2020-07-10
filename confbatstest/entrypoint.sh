@@ -31,11 +31,8 @@ exec_bats() {
 
     conftest pull "${url}" --policy "${name}"
 
-    # shellcheck disable=SC2038
-    for file in $(find "${name}"/* -name "*.rego" -type f | xargs) ; do
-      cp "${file}" "policy/${file////_}"
-    done
-
+    # Move pulled policies into main policy dir
+    mv "${name}"/* policy/
     rm -rf "${name}"
   done
 
@@ -49,4 +46,16 @@ exec_bats() {
   exec bats "${TESTS}"
 }
 
-exec_bats "${1}" "${2}"
+exec_raw() {
+  local COMMAND="${1}"
+
+  echo "Executing: ${COMMAND}"
+  
+  eval "${COMMAND}"
+}
+
+if [[ -z "${3}" ]]; then
+  exec_bats "${1}" "${2}"
+else
+  exec_raw "${3}"
+fi

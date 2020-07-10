@@ -17,7 +17,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Conftest
+      - name: confbatstest - tests
         uses: ./confbatstest
         with:
           tests: confbatstest/_test/conftest.sh
+
+      - name: confbatstest - raw
+        uses: ./confbatstest
+        with:
+          raw: konstraint doc -o POLICIES.md
+
+      - name: Check POLICIES.md file exists
+        run: |
+          FILE="POLICIES.md"
+          if [ -f "$FILE" ]; then
+            echo "$FILE exists."
+          else
+            echo "$FILE does not exist."
+            exit 1
+          fi
