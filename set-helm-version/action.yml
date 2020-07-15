@@ -1,5 +1,5 @@
-name: 'increment-helm-version'
-description: 'Increments the version of a Helm chart'
+name: 'set-helm-version'
+description: 'Sets the version of a Helm chart'
 author: 'Red Hat CoP'
 icon: package
 color: purple
@@ -9,11 +9,11 @@ inputs:
     default: '.'
     required: false
   chart_version:
-    description: 'source2image base image'
+    description: 'Desired chart version'
     default: "false"
     required: false
   app_version:
-    description: 'resulting image'
+    description: 'Desired app version'
     default: "false"
     required: false
 

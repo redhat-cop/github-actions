@@ -2,7 +2,7 @@ FROM python:3
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
-LABEL homepage="http://github.com/redhat-cop/github-actions/increment-helm-version"
+LABEL homepage="http://github.com/redhat-cop/github-actions/set-helm-version"
 LABEL maintainer="Red Hat CoP"
 LABEL "com.github.actions.name"="set-helm-version"
 LABEL "com.github.actions.description"="Sets the Helm chart version and appVersion in preparation for a release"
