@@ -1,0 +1,26 @@
+name: 'increment-helm-version'
+description: 'Increments the version of a Helm chart'
+author: 'Red Hat CoP'
+icon: package
+color: purple
+inputs:
+  path:
+    description: 'Path to the Helm chart'
+    default: '.'
+    required: false
+  chart_version:
+    description: 'source2image base image'
+    default: "false"
+    required: false
+  app_version:
+    description: 'resulting image'
+    default: "false"
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.chart_version }}
+    - ${{ inputs.app_version }}
