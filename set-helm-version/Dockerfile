@@ -12,5 +12,5 @@ LABEL "com.github.actions.color"="purple"
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-ADD entrypoint.py /entrypoint.py
+ADD entrypoint.py ./entrypoint.py
 ENTRYPOINT [ "python", "./entrypoint.py" ]
