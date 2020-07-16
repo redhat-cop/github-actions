@@ -1,0 +1,43 @@
+name: Test set-helm-version
+
+on:
+  push:
+    paths:
+      - .github/workflows/set-helm-version.yaml
+      - set-helm-version/**
+  pull_request:
+    paths:
+      - .github/workflows/set-helm-version.yaml
+      - set-helm-version/**
+
+jobs:
+  set-helm-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: set-helm-version
+        uses: ./set-helm-version
+        with:
+          path: set-helm-version/_test
+          chart_version: v1.5.0
+          app_version: v1.6.0
+
+      - name: Check that the chart was modified as expected
+        run: |
+          if grep -Fxq "version: v1.5.0" set-helm-version/_test/Chart.yaml
+          then
+              echo "Found expected chart version"
+          else
+              echo "Did not find expected chart version!"
+              exit 1
+          fi
+          
+          if grep -Fxq "appVersion: v1.6.0" set-helm-version/_test/Chart.yaml
+          then
+              echo "Found expected app version"
+          else
+              echo "Did not find expected app version!"
+              exit 1
+          fi
