@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.2
 
-LABEL version="1.3.0"
+LABEL version="1.4.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/confbatstest"
 LABEL maintainer="Red Hat CoP"
@@ -53,6 +53,12 @@ RUN export GO_VERSION=1.14 && \
     tar -C /tmp -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
     ln -s /tmp/go/bin/go /usr/local/bin/go && \
     go version
+
+RUN export KUBEVAL_VERSION=latest && \
+    wget --no-verbose https://github.com/instrumenta/kubeval/releases/${KUBEVAL_VERSION}/download/kubeval-linux-amd64.tar.gz && \
+    tar -C /tmp -xzf kubeval-linux-amd64.tar.gz && \
+    ln -s /tmp/kubeval /usr/local/bin/kubeval && \
+    kubeval --version
 
 RUN GO111MODULE=on go get github.com/plexsystems/konstraint && \
     ln -s ~/go/bin/konstraint /usr/local/bin/konstraint && \
