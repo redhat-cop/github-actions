@@ -1,0 +1,81 @@
+name: Test ssh-agent
+
+on:
+  push:
+    paths:
+      - .github/workflows/ssh-agent.yaml
+      - ssh-agent/**
+  pull_request:
+    paths:
+      - .github/workflows/ssh-agent.yaml
+      - ssh-agent/**
+
+jobs:
+  set-helm-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: ssh-agent
+        uses: ./ssh-agent
+        with:
+          domain: gitlab.com
+          # THIS IS AN TEST KEY - IT DOESN'T DO ANYTHING
+          private_key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            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
+            BAUGBw==
+            -----END OPENSSH PRIVATE KEY-----
+
+      - name: Check that the expected environment variables are present
+        run: |
+
+          if [[ -z "${SSH_AUTH_SOCK}" ]]; then
+            echo "Found expected SSH_AUTH_SOCK"
+          else
+            echo "Did not find expected SSH_AUTH_SOCK!"
+            exit 1
+          fi
+
+          if [[ -z "${SSH_AGENT_PID}" ]]; then
+            echo "Found expected SSH_AGENT_PID"
+          else
+            echo "Did not find expected SSH_AGENT_PID!"
+            exit 1
+          fi
