@@ -11,7 +11,7 @@ on:
       - ssh-agent/**
 
 jobs:
-  set-helm-version:
+  ssh-agent:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -67,15 +67,17 @@ jobs:
         run: |
 
           if [[ -z "${SSH_AUTH_SOCK}" ]]; then
-            echo "Found expected SSH_AUTH_SOCK"
-          else
             echo "Did not find expected SSH_AUTH_SOCK!"
             exit 1
+          else
+            echo "Found expected SSH_AUTH_SOCK:"
+            echo $SSH_AUTH_SOCK
           fi
 
           if [[ -z "${SSH_AGENT_PID}" ]]; then
-            echo "Found expected SSH_AGENT_PID"
-          else
             echo "Did not find expected SSH_AGENT_PID!"
             exit 1
+          else
+            echo "Found expected SSH_AGENT_PID:"
+            echo $SSH_AGENT_PID
           fi
