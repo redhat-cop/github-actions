@@ -1,6 +1,6 @@
 const core = require('@actions/core')
 const proc = require('child_process')
-var fs = require('fs')
+const fs = require('fs')
 
 try {
   if(!fs.existsSync(`${process.env['HOME']}/.ssh`)) {
@@ -30,10 +30,20 @@ try {
       console.log(`Agent PID is ${pid}`)
     }
   })
+  console.log("Exported agent variables")
   console.log("Started ssh-agent!")
   console.log("Adding identity")
-  proc.execSync("ssh-add -", {input: core.getInput("private_key").trim() + "\n"})
+  proc.execSync(
+    "ssh-add -",
+    {
+      stdio: [null, null, null],
+      input: core.getInput("private_key").trim() + "\n"
+    }
+  )
   console.log("Added identity!")
+  console.log("ssh-agent is ready to use")
 } catch (error) {
-  console.log(error)
+  console.log("Encountered an error:")
+  console.log(error.message)
+  process.exit(1)
 }
