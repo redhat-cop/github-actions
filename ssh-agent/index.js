@@ -3,12 +3,12 @@ const process = require('child_process')
 var fs = require('fs')
 
 try {
-  if(!fs.existsSync("~/.ssh")) {
-    fs.mkdirSync("~/.ssh")
+  if(!fs.existsSync(`${process.env.HOME}/.ssh`)) {
+    fs.mkdirSync(`${process.env.HOME}/.ssh`)
   }
   console.log("Building known hosts")
   process.execSync(
-    `ssh-keyscan -p ${core.getInput('ssh_port')} ${core.getInput('domain')} >> ~/.ssh/known_hosts`,
+    `ssh-keyscan -p ${core.getInput('ssh_port')} ${core.getInput('domain')} >> ${process.env.HOME}/.ssh/known_hosts`,
     {
       timeout: 20000
     }
