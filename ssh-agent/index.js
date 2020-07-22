@@ -32,7 +32,7 @@ try {
   })
   console.log("Started ssh-agent!")
   console.log("Adding identity")
-  proc.execSync("ssh-add -", {input: core.getInput("private_key")})
+  proc.execSync("ssh-add -", {input: core.getInput("private_key").trim() + "\n"})
   console.log("Added identity!")
 } catch (error) {
   console.log(error)
