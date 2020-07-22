@@ -10,6 +10,7 @@ try {
   proc.execSync(
     `ssh-keyscan -p ${core.getInput('ssh_port')} ${core.getInput('domain')} >> ${process.env['HOME']}/.ssh/known_hosts`,
     {
+      stdio: [null, null, null],
       timeout: 20000
     }
   )
@@ -29,8 +30,10 @@ try {
       console.log(`Agent PID is ${pid}`)
     }
   })
-  console.log("Started ssh-agent")
-  console.log(sshOutput)
+  console.log("Started ssh-agent!")
+  console.log("Adding identity")
+  proc.execSync("ssh-add -", {input: core.getInput("private_key")})
+  console.log("Added identity!")
 } catch (error) {
   console.log(error)
 }
