@@ -1,5 +1,5 @@
 const core = require('@actions/core')
-const process = require('child_process')
+const proc = require('child_process')
 var fs = require('fs')
 
 try {
@@ -7,7 +7,7 @@ try {
     fs.mkdirSync(`${process.env['HOME']}/.ssh`, {recursive: true})
   }
   console.log("Building known hosts")
-  process.execSync(
+  proc.execSync(
     `ssh-keyscan -p ${core.getInput('ssh_port')} ${core.getInput('domain')} >> ${process.env['HOME']}/.ssh/known_hosts`,
     {
       timeout: 20000
@@ -15,7 +15,7 @@ try {
   )
   console.log("Finished building known hosts!")
   console.log("Starting ssh-agent")
-  sshOutput = process.execFileSync(`ssh-agent`, ["-a", core.getInput('ssh_auth_sock')])
+  sshOutput = proc.execFileSync(`ssh-agent`, ["-a", core.getInput('ssh_auth_sock')])
   sshOutput.toString().split("\n").forEach((line) => {
     var regexp = /=(.*); /g;
     if (line.includes("SSH_AUTH_SOCK")) {
