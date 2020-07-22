@@ -1,0 +1,21 @@
+name: 'ssh-agent'
+description: 'Sets up an ssh-agent with a private key and known_hosts'
+inputs:
+  domain:
+    description: 'Domain to configure SSH to connect to'
+    required: true
+  private_key:
+    description: 'Private key to configure SSH to use'
+    required: true
+  ssh_auth_sock:
+    description: 'SSH agent socket'
+    default: "/tmp/ssh_agent.sock"
+    required: false
+  ssh_port:
+    description: "SSH port to use for connecting"
+    default: "22"
+    required: false
+outputs: {}
+runs:
+  using: 'node12'
+  main: 'index.js'
