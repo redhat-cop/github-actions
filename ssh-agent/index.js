@@ -4,7 +4,7 @@ var fs = require('fs')
 
 try {
   if(!fs.existsSync(`${process.env['HOME']}/.ssh`)) {
-    fs.mkdirSync(`${process.env['HOME']}/.ssh`)
+    fs.mkdirSync(`${process.env['HOME']}/.ssh`, {recursive: true})
   }
   console.log("Building known hosts")
   process.execSync(
