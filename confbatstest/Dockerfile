@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.2
 
-LABEL version="1.2.1"
+LABEL version="1.3.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/confbatstest"
 LABEL maintainer="Red Hat CoP"
@@ -47,6 +47,16 @@ RUN export OC_VERSION=4.4 && \
     tar -C /tmp -xzf oc.tar.gz && \
     ln -s /tmp/oc /usr/local/bin/oc && \
     oc version
+
+RUN export GO_VERSION=1.14 && \
+    wget --no-verbose https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar -C /tmp -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
+    ln -s /tmp/go/bin/go /usr/local/bin/go && \
+    go version
+
+RUN GO111MODULE=on go get github.com/plexsystems/konstraint && \
+    ln -s ~/go/bin/konstraint /usr/local/bin/konstraint && \
+    konstraint --help
 
 RUN pip3 install yq && \
     yq --version
