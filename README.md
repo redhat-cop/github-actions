@@ -8,6 +8,7 @@ This repository contains:
 
 ### Actions
 - [confbatstest](/confbatstest)
+- [github-dispatches](/github-dispatches)
 - [redhat-csp-download](/redhat-csp-download)
 - [s2i](/s2i)
 

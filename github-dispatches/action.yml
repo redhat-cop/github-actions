@@ -1,0 +1,20 @@
+name: 'github-dispatches'
+description: 'Triggers a GitHub CI dispatches event.'
+author: 'Red Hat CoP'
+branding:
+  icon: monitor
+  color: purple
+inputs:
+  repo_array:
+    description: "JSON array of repos to trigger"
+    required: true
+  username_token:
+    description: "Personal GitHub access token in the form of 'username:token' which has 'repo' access"
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo_array }}
+    - ${{ inputs.username_token }}

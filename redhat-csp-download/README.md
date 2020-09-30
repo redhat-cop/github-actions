@@ -1,3 +1,5 @@
+![Test redhat-csp-download](https://github.com/redhat-cop/github-actions/workflows/Test%20redhat-csp-download/badge.svg)
+
 # redhat-csp-download GitHub Action
 
 This action uses [redhat-csp-download](https://github.com/sabre1041/redhat-csp-download) to download resources from the Red Hat Customer Portal,
