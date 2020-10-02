@@ -1,5 +1,5 @@
 name: Chart Repo PR Action
-author: Austin Dewey <deweya964@gmail.com>
+author: 'Red Hat CoP'
 description: Automatically make a PR to an upstream chart repository
 branding:
   icon: 'git-pull-request'
