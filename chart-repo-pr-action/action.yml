@@ -1,0 +1,49 @@
+name: Chart Repo PR Action
+author: Austin Dewey <deweya964@gmail.com>
+description: Automatically make a PR to a central chart repository
+branding:
+  icon: 'git-pull-request'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  auth_token:
+    description: Token used for authentication to push
+    required: true
+  chart_repo:
+    description: "The chart repository that you want to publish your charts to (ex: redhat-cop/helm-charts)"
+    required: true
+  fork_owner:
+    description: "The owner of the chart repo fork. If blank, this Action assumes that you are publishing to a chart repo with the same org as your local repository."
+    required: false
+  auth_user:
+    description: Username used for authentication to push. If blank, defaults to the user who triggered the action.
+    required: false
+  local_charts_dir:
+    description: Charts directory name in local repo
+    required: false
+    default: charts
+  central_charts_dir:
+    description: Charts directory name in central repo
+    required: false
+    default: charts
+  head_branch:
+    description: New or existing branch the action should use as the PR head branch
+    required: false
+    default: feat/sync
+  base_branch:
+    description: Existing chart repo branch that the action should use as the PR base branch
+    required: false
+    default: master
+  committer_name:
+    description: The GitHub username to use as the committer name. If blank, defaults to the user who triggered the action.
+    required: false
+  committer_email:
+    description: The email to use as the committer email
+    required: false
+    default: <>
+  commit_message:
+    description: Commit message to use for push
+    required: false
+    default: Syncing local charts with central chart repo
