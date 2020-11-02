@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: deweya/chart-repo-pr-action@v0.2.0
+      - uses: redhat-cop/github-actions/chart-repo-pr-action@master
         with:
           auth_token: ${{ secrets.PAT }}
           chart_repo: deweya0/helm-charts
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: deweya/chart-repo-pr-action@v0.2.0
+      - uses: redhat-cop/github-actions/chart-repo-pr-action@master
         with:
           auth_token: ${{ secrets.PAT }}
           chart_repo: deweya0/helm-charts
