@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: deweya/chart-repo-pr-action@v0.2.0
+      - uses: redhat-cop/github-actions/chart-repo-pr-action@v3
         with:
           auth_token: ${{ secrets.PAT }}
-          chart_repo: deweya0/helm-charts
+          chart_repo: redhat-cop/helm-charts
           committer_email: deweya964@gmail.com
 ```
 
@@ -54,10 +54,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: deweya/chart-repo-pr-action@v0.2.0
+      - uses: redhat-cop/github-actions/chart-repo-pr-action@v3
         with:
           auth_token: ${{ secrets.PAT }}
-          chart_repo: deweya0/helm-charts
+          chart_repo: redhat-cop/helm-charts
           fork_owner: deweya
           committer_email: deweya964@gmail.com
 ```
@@ -70,7 +70,7 @@ See the next section for additional parameters.
 | Parameter | Description | Default | Required? |
 | --------- | ----------- | ------- | --------- |
 | `auth_token` | Token used for authentication to push | - | true |
-| `chart_repo` | The central chart repository that you want to publish your charts to (ex: deweya0/helm-charts) | - | true |
+| `chart_repo` | The central chart repository that you want to publish your charts to (ex: redhat-cop/helm-charts) | - | true |
 | `fork_owner` | The owner of the chart repo fork (ex: deweya). If blank, this Action assumes that you are publishing to a chart repo with the same org as your local repository. | - | false |
 | `auth_user` | Username used for authentication to push. | Defaults to the user who triggered the action | false |
 | `local_charts_dir` | Charts directory name in local repo | `charts` | false |
