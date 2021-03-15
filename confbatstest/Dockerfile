@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3
 
-LABEL version="1.6.0"
+LABEL version="1.7.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/confbatstest"
 LABEL maintainer="Red Hat CoP"
@@ -17,13 +17,13 @@ RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils diffuti
     git --version && \
     diff --version
 
-RUN export OPA_VERSION=v0.25.2 && \
+RUN export OPA_VERSION=v0.27.1 && \
     wget --no-verbose --directory-prefix=/tmp https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
     chmod +x /tmp/opa_linux_amd64 && \
     ln -s /tmp/opa_linux_amd64 /usr/local/bin/opa && \
     opa --help
 
-RUN export CONFTEST_VERSION=0.22.0 && \
+RUN export CONFTEST_VERSION=0.23.0 && \
     wget --no-verbose https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
     tar -C /tmp -xzf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
     ln -s /tmp/conftest /usr/local/bin/conftest && \
@@ -36,7 +36,7 @@ RUN export BATS_VERSION=master && \
     ln -s /opt/bats/bin/bats /usr/local/bin/bats && \
     bats --version
 
-RUN export HELM_VERSION=3.4.1 && \
+RUN export HELM_VERSION=3.5.3 && \
     wget --no-verbose https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     tar -C /tmp -xzf helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     ln -s /tmp/linux-amd64/helm /usr/local/bin/helm && \
@@ -48,13 +48,15 @@ RUN export JQ_VERSION=1.6 && \
     ln -s /tmp/jq-linux64 /usr/local/bin/jq && \
     jq --version
 
-RUN export OC_VERSION=4.6 && \
-    wget --no-verbose https://mirror.openshift.com/pub/openshift-v4/clients/oc/${OC_VERSION}/linux/oc.tar.gz && \
-    tar -C /tmp -xzf oc.tar.gz && \
+RUN export OC_VERSION=4.7.0 && \
+    wget --no-verbose https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz && \
+    tar -C /tmp -xzf openshift-client-linux.tar.gz && \
     ln -s /tmp/oc /usr/local/bin/oc && \
-    oc version
+    ln -s /tmp/kubectl /usr/local/bin/kubectl && \
+    oc version && \
+    kubectl version
 
-RUN export GO_VERSION=1.15.6 && \
+RUN export GO_VERSION=1.16.1 && \
     wget --no-verbose https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /tmp -xzf go${GO_VERSION}.linux-amd64.tar.gz && \
     ln -s /tmp/go/bin/go /usr/local/bin/go && \
