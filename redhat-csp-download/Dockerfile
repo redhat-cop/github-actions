@@ -1,6 +1,6 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.2
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3
 
-LABEL version="1.0.1"
+LABEL version="1.1.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/redhat-csp-download"
 LABEL maintainer="Red Hat CoP"
@@ -14,6 +14,7 @@ RUN microdnf install --assumeyes --nodocs python3 && \
     microdnf clean all && \
     python3 --version
 
+RUN python3 -m pip install --upgrade pip
 RUN pip3 install -r /ansible/requirements.txt && \
     ansible --version && \
     ansible-galaxy --version && \
