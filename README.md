@@ -7,10 +7,13 @@ This repository contains:
 ## Included in this repo:
 
 ### Actions
+- [chart-repo-pr-action](/chart-repo-pr-action)
 - [confbatstest](/confbatstest)
 - [github-dispatches](/github-dispatches)
 - [redhat-csp-download](/redhat-csp-download)
 - [s2i](/s2i)
+- [set-helm-version](/set-helm-version)
+- [ssh-agent](/ssh-agent)
 
 ### Workflows
 
