@@ -4,6 +4,11 @@ This action uses [Source2Image](https://github.com/openshift/source-to-image) to
 images from source. After the image is built, it will automatically be pushed to a desired
 image registry.
 
+## Use redhat-actions/s2i-build
+
+This action will be deprecated in the future, in favour of:
+- https://github.com/marketplace/actions/source-to-image-build
+
 ## Usage
 
 Add the following to a step in your GitHub Workflow:
