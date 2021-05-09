@@ -1,0 +1,30 @@
+name: 'disconnected-csv'
+description: 'Run disconnected-csv to prepare a ClusterServiceVersion for disconnected environments'
+author: 'Red Hat CoP'
+branding:
+  icon: monitor
+  color: purple
+inputs:
+  OPERATOR_CONTAINER_NAME:
+    description: "Specifies which container in the deployment is the Operator; used for annotations."
+    required: false
+    default: 'manager'
+  RELATED_IMAGE_ENV_PREFIX:
+    description: |
+      Environment variables with this prefix will be considered to have image
+      references as their values. These will be processed as related images.
+    required: false
+    default: 'RELATED_IMAGE_'
+  TAGS_TO_DIGESTS:
+    description: |
+      If set, this triggers lookup and conversion to tag-based references 
+      to digest-based references. All tag-based references in the CSV will be
+      replaced with their digest equivalents. To avoid this conversion,
+      leave this input unset.
+    required: false
+  CSV_FILE:
+    description: "The path to the ClusterServiceVersion YAML file that will be processed."
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

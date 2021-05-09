@@ -14,6 +14,7 @@ This repository contains:
 - [s2i](/s2i)
 - [set-helm-version](/set-helm-version)
 - [ssh-agent](/ssh-agent)
+- [disconected-csv](/disconnected-csv)
 
 ### Workflows
 
