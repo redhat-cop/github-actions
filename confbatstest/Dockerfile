@@ -17,7 +17,7 @@ RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils diffuti
     git --version && \
     diff --version
 
-RUN export OPA_VERSION=v0.27.1 && \
+RUN export OPA_VERSION=v0.29.4 && \
     wget --no-verbose --directory-prefix=/tmp https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
     chmod +x /tmp/opa_linux_amd64 && \
     ln -s /tmp/opa_linux_amd64 /usr/local/bin/opa && \
