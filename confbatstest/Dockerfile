@@ -9,13 +9,14 @@ LABEL "com.github.actions.description"="Run conftest using BATS"
 LABEL "com.github.actions.branding.icon"="monitor"
 LABEL "com.github.actions.branding.color"="purple"
 
-RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils diffutils && \
+RUN microdnf install --assumeyes --nodocs tar wget python3 git findutils diffutils bc && \
     microdnf clean all && \
     tar --version && \
     wget --version && \
     python3 --version && \
     git --version && \
-    diff --version
+    diff --version && \
+    bc --version
 
 RUN export OPA_VERSION=v0.29.4 && \
     wget --no-verbose --directory-prefix=/tmp https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
