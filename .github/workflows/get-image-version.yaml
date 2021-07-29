@@ -1,0 +1,49 @@
+name: Test get-image-version
+
+on:
+  push:
+    paths:
+      - .github/workflows/get-image-version.yaml
+      - get-image-version/**
+  pull_request:
+    paths:
+      - .github/workflows/get-image-version.yaml
+      - get-image-version/**
+
+jobs:
+  get-image-version:
+    env:
+      CONTEXT_DIR: get-image-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: get-image-version - tests
+        id: get_image_version
+        uses: ./get-image-version
+        with:
+          IMAGE_CONTEXT_DIR: ${{ env.CONTEXT_DIR }}/_test
+
+      - name: Check outputs are correct
+        run: |
+          tags="${{ steps.get_image_version.outputs.IMAGE_TAGS }}"
+
+          echo "VERSION == ${{ steps.get_image_version.outputs.VERSION }}"
+          echo "MINOR_VERSION == ${{ steps.get_image_version.outputs.MINOR_VERSION }}"
+          echo "IMAGE_TAGS == ${tags[*]}"
+
+          if [[ "${{ steps.get_image_version.outputs.VERSION }}" != "v1.32.1" ]]; then
+              echo "VERSION missmatch"
+              exit 1
+          fi
+
+          if [[ "${{ steps.get_image_version.outputs.MINOR_VERSION }}" != "v1.32" ]]; then
+              echo "MINOR_VERSION missmatch"
+              exit 1
+          fi
+
+          if [[ "${tags[*]}" != "latest v1.32.1 v1.32" ]]; then
+              echo "IMAGE_TAGS missmatch"
+              exit 1
+          fi
