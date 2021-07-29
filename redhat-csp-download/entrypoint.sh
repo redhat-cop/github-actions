@@ -20,7 +20,7 @@ exec_csp() {
   fi
 
   pushd /ansible
-  ansible-galaxy install -r requirements.yml
+  ansible-galaxy collection install -r requirements.yml
   ansible-playbook download.yml -e rh_username="${RH_USERNAME}" -e rh_password="${RH_PASSWORD}" -e download="${DOWNLOAD}"
   popd
 }

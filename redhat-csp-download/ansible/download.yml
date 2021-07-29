@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   gather_facts: no
-  roles:
-    - sabre1041.redhat-csp-download
+  collections:
+    - middleware_automation.redhat_csp_download
 
   tasks:
     - name: Download product zips
