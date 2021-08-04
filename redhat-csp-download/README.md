@@ -2,7 +2,7 @@
 
 # redhat-csp-download GitHub Action
 
-This action uses [redhat-csp-download](https://github.com/sabre1041/redhat-csp-download) to download resources from the Red Hat Customer Portal,
+This action uses [redhat-csp-download](https://github.com/ansible-middleware/redhat-csp-download) to download resources from the Red Hat Customer Portal,
 which can be used as part of your GitHub integration tests.
 
 ## Usage
