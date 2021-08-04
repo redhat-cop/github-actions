@@ -19,7 +19,7 @@ RUN python3 -m pip install --upgrade pip
 RUN pip3 install -r /ansible/requirements.txt && \
     ansible --version && \
     ansible-galaxy --version && \
-    ansible-playbook --version 
+    ansible-playbook --version
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
