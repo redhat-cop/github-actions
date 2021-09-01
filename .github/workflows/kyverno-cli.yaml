@@ -1,0 +1,28 @@
+name: Test kyverno-cli
+
+on:
+  push:
+    paths:
+      - .github/workflows/kyverno-cli.yaml
+      - kyverno-cli/**
+  pull_request:
+    paths:
+      - .github/workflows/kyverno-cli.yaml
+      - kyverno-cli/**
+
+jobs:
+  kyverno-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: kyverno-cli - tests
+        uses: ./kyverno-cli
+        with:
+          tests: kyverno-cli/_test/kyverno.sh
+
+      - name: kyverno-cli - raw
+        uses: ./kyverno-cli
+        with:
+          raw: kyverno apply kyverno-cli/_test/policy.yaml --resource kyverno-cli/_test/namespace.yaml
