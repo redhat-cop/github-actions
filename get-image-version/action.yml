@@ -23,8 +23,8 @@ runs:
       run: |
         VERSION=$(jq -r '.version' ${{ inputs.IMAGE_CONTEXT_DIR }}/version.json)
 
-        # version.json must have semantic version: vMAJOR.MINOR.PATCH
-        if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        # version.json must have semantic version: vMAJOR.MINOR.PATCH(-PRE-RELEASE)
+        if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+([0-9A-Za-z-]*)$ ]]; then
             echo "${{ inputs.IMAGE_CONTEXT_DIR }}/version.json does not contain semantic version, vMAJOR.MINOR.PATCH"
             cat ${{ inputs.IMAGE_CONTEXT_DIR }}/version.json
             exit 1
