@@ -1,0 +1,21 @@
+name: 'kyverno-cli'
+description: 'Run kyverno using BATS'
+author: 'Red Hat CoP'
+branding:
+  icon: monitor
+  color: purple
+inputs:
+  tests:
+    description: "BATS test bash file"
+    default: "_test/kyverno.sh"
+    required: false
+  raw:
+    description: "Execute a single command, i.e.: kyverno apply policy.yaml --resource my-deployment.yml"
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.tests }}
+    - ${{ inputs.raw }}
