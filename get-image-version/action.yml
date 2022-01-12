@@ -1,0 +1,40 @@
+name: 'Get Image Version'
+description: 'Parses the version.json content'
+inputs:
+  IMAGE_CONTEXT_DIR:
+    description: 'Context for the version.json'
+    required: true
+outputs:
+  VERSION:
+    description: "Version; i.e.: 1.0.1"
+    value: ${{ steps.check_version.outputs.VERSION }}
+  MINOR_VERSION:
+    description: "Minor version; i.e.: 1.0"
+    value: ${{ steps.check_version.outputs.MINOR_VERSION }}
+  IMAGE_TAGS:
+    description: "Image tags from versions; i.e.: latest, 1.0.1 and 1.0"
+    value: ${{ steps.check_version.outputs.IMAGE_TAGS }}
+runs:
+  using: "composite"
+  steps:
+    - name: Check and verify version.json
+      id: check_version
+      shell: bash
+      run: |
+        VERSION=$(jq -r '.version' ${{ inputs.IMAGE_CONTEXT_DIR }}/version.json)
+
+        # version.json must have semantic version: vMAJOR.MINOR.PATCH(-PRE-RELEASE)
+        if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+([0-9A-Za-z-]*)$ ]]; then
+            echo "${{ inputs.IMAGE_CONTEXT_DIR }}/version.json does not contain semantic version, vMAJOR.MINOR.PATCH"
+            cat ${{ inputs.IMAGE_CONTEXT_DIR }}/version.json
+            exit 1
+        fi
+
+        TAGS=("latest" "${VERSION}" "${VERSION%.*}")
+        if [[ "${GITHUB_REF}" =~ refs/tags/(.*) ]]; then
+            TAGS+=("git-${BASH_REMATCH[1]}")
+        fi
+
+        echo "::set-output name=VERSION::$(echo $VERSION)"
+        echo "::set-output name=MINOR_VERSION::$(echo ${VERSION%.*})"
+        echo "::set-output name=IMAGE_TAGS::$(echo ${TAGS[*]})"
