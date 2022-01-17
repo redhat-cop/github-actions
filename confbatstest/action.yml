@@ -1,25 +1,24 @@
-name: 'confbatstest'
-description: 'Run conftest using BATS'
-author: 'Red Hat CoP'
+name: confbatstest
+description: Run conftest using BATS
+author: Red Hat CoP
 branding:
   icon: monitor
   color: purple
 inputs:
   tests:
-    description: "BATS test bash file"
-    default: "_test/conftest.sh"
+    description: BATS test bash file
+    default: _test/conftest.sh
     required: false
   policies:
     description: "JSON array of policies to pull via conftest. See: https://github.com/open-policy-agent/conftest/blob/master/docs/sharing.md"
     default: '[{"name": "redhat-cop", "url":"github.com/redhat-cop/rego-policies.git//policy"}]'
     required: false
   raw:
-    description: "Execute a single command, i.e.: konstraint doc -o POLICIES.md"
+    description: 'Execute a single command, i.e.: konstraint doc -o POLICIES.md'
     required: false
-
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: Dockerfile
   args:
     - ${{ inputs.tests }}
     - ${{ inputs.policies }}
