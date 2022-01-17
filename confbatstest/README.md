@@ -16,7 +16,7 @@ Execute a BATS file which contains conftest tests.
       uses: redhat-cop/github-actions/confbatstest@master
       with:
         tests: _test/conftest.sh
-        policies: '[{"name": "redhat-cop", "url":"github.com/redhat-cop/rego-policies.git//policy"},{"name": "deprek8ion", "url":"github.com/swade1987/deprek8ion.git//policies"}]'
+        policies: '[{"name": "redhat-cop", "url":"github.com/redhat-cop/rego-policies.git//policy"}]'
 ```
 
 Execute a command, such as konstraint to generate rego policy documentation.
