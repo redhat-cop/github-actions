@@ -17,6 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Switch the action to use the Dockerfile_build
+        run: |
+          mv redhat-csp-download/Dockerfile redhat-csp-download/Dockerfile_runnable
+          mv redhat-csp-download/Dockerfile_build redhat-csp-download/Dockerfile
+
       - name: redhat-csp-download
         uses: ./redhat-csp-download
         with:

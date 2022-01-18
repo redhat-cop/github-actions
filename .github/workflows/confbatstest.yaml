@@ -17,6 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Switch the action to use the Dockerfile_build
+        run: |
+          mv confbatstest/Dockerfile confbatstest/Dockerfile_runnable
+          mv confbatstest/Dockerfile_build confbatstest/Dockerfile
+
       - name: confbatstest - tests
         uses: ./confbatstest
         with:
