@@ -9,7 +9,7 @@ RUN export JQ_VERSION=1.6 && \
 # Runnable image
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.5
 
-LABEL version="1.1.0"
+LABEL version="1.2.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/github-dispatches"
 LABEL maintainer="Red Hat CoP"
@@ -21,5 +21,5 @@ LABEL "com.github.actions.branding.color"="purple"
 COPY --from=builder /tmp/jq-linux64 /usr/local/bin/jq
 RUN jq --version
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

@@ -1,6 +1,6 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3
+FROM registry.access.redhat.com/ubi8/python-39:1
 
-LABEL version="1.2.0"
+LABEL version="1.3.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/redhat-csp-download"
 LABEL maintainer="Red Hat CoP"
@@ -10,16 +10,10 @@ LABEL "com.github.actions.branding.icon"="monitor"
 LABEL "com.github.actions.branding.color"="purple"
 
 COPY ansible /ansible
-RUN microdnf install --assumeyes --nodocs python3 && \
-    microdnf clean all && \
-    python3 --version && \
-    python3 -m pip install -U pip
-
-RUN python3 -m pip install --upgrade pip
 RUN pip3 install -r /ansible/requirements.txt && \
     ansible --version && \
     ansible-galaxy --version && \
     ansible-playbook --version
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
