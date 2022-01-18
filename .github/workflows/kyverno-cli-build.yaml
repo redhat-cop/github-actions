@@ -1,0 +1,46 @@
+name: Build kyverno-cli
+
+on:
+  push:
+    paths:
+      - .github/workflows/kyverno-cli-build.yaml
+      - kyverno-cli/**
+
+jobs:
+  build:
+    env:
+      context: kyverno-cli
+      image_name: kyverno-cli
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get image tags
+        id: image_tags
+        run: |
+          echo -n ::set-output name=IMAGE_TAGS::
+
+          TAGS=('latest')
+          TAGS+=($(grep "LABEL version" kyverno-cli/Dockerfile | cut -d '"' -f 2))
+          echo "${TAGS[*]}"
+
+      - name: Build image
+        id: build_image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          context: ${{ env.context }}
+          dockerfiles: |
+            ./${{ env.context }}/Dockerfile
+          image: ${{ env.image_name }}
+          oci: true
+          tags: "${{ steps.image_tags.outputs.IMAGE_TAGS }}"
+
+      - name: Push to ghcr.io
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build_image.outputs.image }}
+          registry: ghcr.io/${{ github.repository }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          tags: ${{ steps.build_image.outputs.tags }}
