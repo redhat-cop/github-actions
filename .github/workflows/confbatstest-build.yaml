@@ -3,7 +3,7 @@ name: Build confbatstest
 on:
   push:
     paths:
-      - .github/workflows/confbatstest.yaml
+      - .github/workflows/confbatstest-build.yaml
       - confbatstest/**
 
 jobs:
@@ -16,6 +16,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Get image tags
+        id: image_tags
+        run: |
+          echo -n ::set-output name=IMAGE_TAGS::
+
+          TAGS=('latest')
+          TAGS+=($(grep "LABEL version" confbatstest/Dockerfile | cut -d '"' -f 2))
+          echo "${TAGS[*]}"
+
       - name: Build image
         id: build_image
         uses: redhat-actions/buildah-build@v2
@@ -25,7 +34,7 @@ jobs:
             ./${{ env.context }}/Dockerfile_build
           image: ${{ env.image_name }}
           oci: true
-          tags: latest
+          tags: "${{ steps.image_tags.outputs.IMAGE_TAGS }}"
 
       - name: Push to ghcr.io
         uses: redhat-actions/push-to-registry@v2
