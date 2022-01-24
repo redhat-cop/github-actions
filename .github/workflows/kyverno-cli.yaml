@@ -17,6 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Switch the action to use the Dockerfile_build
+        run: |
+          mv kyverno-cli/Dockerfile kyverno-cli/Dockerfile_runnable
+          mv kyverno-cli/Dockerfile_build kyverno-cli/Dockerfile
+
       - name: kyverno-cli - tests
         uses: ./kyverno-cli
         with:
