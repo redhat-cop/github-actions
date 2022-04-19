@@ -9,6 +9,8 @@ on:
     paths:
       - disconnected-csv/**
       - .github/workflows/disconnected-csv.yaml
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   disconnected-csv:

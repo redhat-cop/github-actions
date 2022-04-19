@@ -9,6 +9,8 @@ on:
     paths:
       - .github/workflows/ssh-agent.yaml
       - ssh-agent/**
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   ssh-agent:

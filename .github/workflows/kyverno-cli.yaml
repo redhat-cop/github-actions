@@ -9,6 +9,8 @@ on:
     paths:
       - .github/workflows/kyverno-cli.yaml
       - kyverno-cli/**
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   kyverno-cli:

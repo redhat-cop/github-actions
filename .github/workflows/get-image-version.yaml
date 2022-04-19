@@ -9,6 +9,8 @@ on:
     paths:
       - .github/workflows/get-image-version.yaml
       - get-image-version/**
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   get-image-version:

@@ -9,6 +9,8 @@ on:
     paths:
       - .github/workflows/confbatstest.yaml
       - confbatstest/**
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   conftest:
