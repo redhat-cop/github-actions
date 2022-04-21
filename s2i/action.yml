@@ -11,6 +11,7 @@ inputs:
   base:
     description: 'source2image base image'
     required: true
+    deprecationMessage: 'This action is deprecated, please migrate to: https://github.com/marketplace/actions/source-to-image-build'
   output_image:
     description: 'resulting image'
     required: true
