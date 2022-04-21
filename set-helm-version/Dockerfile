@@ -1,6 +1,6 @@
-FROM python:3
+FROM registry.access.redhat.com/ubi8/python-39:1
 
-LABEL version="1.0.0"
+LABEL version="1.1.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/set-helm-version"
 LABEL maintainer="Red Hat CoP"
