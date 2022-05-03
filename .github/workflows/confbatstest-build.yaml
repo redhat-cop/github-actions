@@ -11,6 +11,7 @@ jobs:
     env:
       context: confbatstest
       image_name: confbatstest
+      branch_name: ${{ github.head_ref || github.ref_name }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,6 +38,7 @@ jobs:
           tags: "${{ steps.image_tags.outputs.IMAGE_TAGS }}"
 
       - name: Push to ghcr.io
+        if: ${{ env.branch_name == 'master' }} # Stops push running when dependabot creates a PR, which fails due to token
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build_image.outputs.image }}
