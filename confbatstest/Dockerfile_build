@@ -1,5 +1,5 @@
 # Builder image for go
-FROM registry.access.redhat.com/ubi8/go-toolset:1.16.12 AS go-builder
+FROM registry.access.redhat.com/ubi8/go-toolset:1.17.7 AS go-builder
 RUN GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
     /tmp/go-bin/konstraint --help
 
