@@ -1,10 +1,10 @@
 # Builder image for go
-FROM registry.access.redhat.com/ubi8/go-toolset:1.17.7 AS go-builder
+FROM registry.access.redhat.com/ubi9/go-toolset:1.17.7 AS go-builder
 RUN GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
     /tmp/go-bin/konstraint --help
 
 # Builder image
-FROM registry.access.redhat.com/ubi8/ubi:8.5 AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.0.0 AS builder
 
 RUN export HELM_VERSION=3.7.2 && \
     curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
@@ -38,7 +38,7 @@ RUN export KUBEVAL_VERSION=latest && \
     /tmp/kubeval --version
 
 # Runnable image
-FROM registry.access.redhat.com/ubi8/python-39:1
+FROM registry.access.redhat.com/ubi9/python-39:1
 
 LABEL version="1.8.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"

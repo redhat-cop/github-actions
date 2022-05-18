@@ -1,5 +1,5 @@
 # Builder image
-FROM registry.access.redhat.com/ubi8/ubi:8.5 AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.0.0 AS builder
 
 RUN export HELM_VERSION=3.7.2 && \
     curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
@@ -23,7 +23,7 @@ RUN export KYVERNO_VERSION=v1.4.2 && \
     /tmp/kyverno --help
 
 # Runnable image
-FROM registry.access.redhat.com/ubi8/python-39:1
+FROM registry.access.redhat.com/ubi9/python-39:1
 
 LABEL version="1.1.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
