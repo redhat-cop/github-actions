@@ -9,6 +9,8 @@ on:
     paths:
       - .github/workflows/github-dispatches.yaml
       - github-dispatches/**
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
   github-dispatches:
