@@ -6,7 +6,7 @@ RUN GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
 # Builder image
 FROM registry.access.redhat.com/ubi9/ubi:9.0.0 AS builder
 
-RUN export HELM_VERSION=3.7.2 && \
+RUN export HELM_VERSION=3.9.0 && \
     curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     tar -C /tmp -xzf /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     /tmp/linux-amd64/helm version
