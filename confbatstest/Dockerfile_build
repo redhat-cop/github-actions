@@ -1,6 +1,15 @@
 # Builder image for go
 FROM registry.access.redhat.com/ubi9/go-toolset:1.18 AS go-builder
-RUN GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
+
+# go1.19 not released yet - so need to manaully upgrade
+USER root
+RUN curl -L -o /tmp/go1.19.linux-amd64.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz && \
+    tar -xzf /tmp/go1.19.linux-amd64.tar.gz && \
+    mv go /usr/local && \
+    PATH="/usr/local/go/bin:$PATH" && \
+    go version
+
+RUN PATH="/usr/local/go/bin:$PATH" GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
     /tmp/go-bin/konstraint --help
 
 # Builder image
@@ -19,8 +28,8 @@ RUN export JQ_VERSION=1.6 && \
 RUN export OC_VERSION=4.12.0 && \
     curl -L -o /tmp/openshift-client-linux.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz && \
     tar -C /tmp -xzf /tmp/openshift-client-linux.tar.gz && \
-    /tmp/oc version && \
-    /tmp/kubectl version
+    /tmp/oc version --client && \
+    /tmp/kubectl version --client
 
 RUN export OPA_VERSION=v0.49.2 && \
     curl -L -o /tmp/opa_linux_amd64 https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64 && \
@@ -57,8 +66,8 @@ RUN jq --version
 
 COPY --from=builder /tmp/oc /usr/local/bin/oc
 COPY --from=builder /tmp/kubectl /usr/local/bin/kubectl
-RUN oc version && \
-    kubectl version
+RUN oc version --client && \
+    kubectl version --client
 
 COPY --from=builder /tmp/opa_linux_amd64 /usr/local/bin/opa
 RUN opa --help
