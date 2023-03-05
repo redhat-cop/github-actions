@@ -35,6 +35,7 @@ runs:
             TAGS+=("git-${BASH_REMATCH[1]}")
         fi
 
-        echo "::set-output name=VERSION::$(echo $VERSION)"
-        echo "::set-output name=MINOR_VERSION::$(echo ${VERSION%.*})"
-        echo "::set-output name=IMAGE_TAGS::$(echo ${TAGS[*]})"
+        echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
+        echo "MINOR_VERSION=$(echo ${VERSION%.*})" >> $GITHUB_OUTPUT
+        echo "IMAGE_TAGS=$(echo ${TAGS[*]})" >> $GITHUB_OUTPUT
+        
