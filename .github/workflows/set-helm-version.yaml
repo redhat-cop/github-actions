@@ -19,6 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: set-helm-version/Dockerfile
+
       - name: set-helm-version
         uses: ./set-helm-version
         with:

@@ -19,6 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: disconnected-csv/Dockerfile
+          ignore: DL3013 # https://github.com/hadolint/hadolint/wiki/DL3013
+
       - uses: ./disconnected-csv
         with:
           CSV_FILE: ./disconnected-csv/tests/sample-clusterserviceversion.yaml
