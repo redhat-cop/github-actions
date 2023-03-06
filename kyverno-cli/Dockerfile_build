@@ -1,7 +1,7 @@
 # Builder image
-FROM registry.access.redhat.com/ubi9/ubi:9.0.0 AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.1 AS builder
 
-RUN export HELM_VERSION=3.7.2 && \
+RUN export HELM_VERSION=3.11.1 && \
     curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     tar -C /tmp -xzf /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     /tmp/linux-amd64/helm version
@@ -11,13 +11,13 @@ RUN export JQ_VERSION=1.6 && \
     chmod +x /tmp/jq-linux64 && \
     /tmp/jq-linux64 --version
 
-RUN export OC_VERSION=4.9.0 && \
+RUN export OC_VERSION=4.12.0 && \
     curl -L -o /tmp/openshift-client-linux.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz && \
     tar -C /tmp -xzf /tmp/openshift-client-linux.tar.gz && \
-    /tmp/oc version && \
-    /tmp/kubectl version
+    /tmp/oc version --client && \
+    /tmp/kubectl version --client
 
-RUN export KYVERNO_VERSION=v1.4.2 && \
+RUN export KYVERNO_VERSION=v1.9.0 && \
     curl -L -o /tmp/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz https://github.com/kyverno/kyverno/releases/download/${KYVERNO_VERSION}/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz && \
     tar -C /tmp -xzf /tmp/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz && \
     /tmp/kyverno --help
@@ -42,8 +42,8 @@ RUN jq --version
 
 COPY --from=builder /tmp/oc /usr/local/bin/oc
 COPY --from=builder /tmp/kubectl /usr/local/bin/kubectl
-RUN oc version && \
-    kubectl version
+RUN oc version --client && \
+    kubectl version --client
 
 COPY --from=builder /tmp/kyverno /usr/local/bin/kyverno
 RUN kyverno --help
