@@ -20,3 +20,6 @@
 ## File-based project format:
 *.iws
 *.iml
+
+ssh-agent/node_modules
+ssh-agent/package-lock.json
