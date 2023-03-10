@@ -1,0 +1,47 @@
+name: Build ssh-agent
+
+on:
+  push:
+    paths:
+      - .github/workflows/ssh-agent-build.yaml
+      - ssh-agent/**
+  pull_request:
+    paths:
+      - .github/workflows/ssh-agent-build.yaml
+      - ssh-agent/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Node.js dependencies
+        run: |
+          pushd ssh-agent/
+          npm install
+          npm i -g @vercel/ncc
+          popd
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          continue_on_error: false
+          eslint_dir: ssh-agent/
+          eslint_auto_fix: false
+          eslint: true
+          prettier_dir: ssh-agent/
+          prettier_auto_fix: false
+          prettier: true
+
+      - name: Compile Node.js dependencies
+        run: |
+          pushd ssh-agent/
+          npm run compile
+          popd
