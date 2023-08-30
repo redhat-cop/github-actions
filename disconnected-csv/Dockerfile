@@ -1,4 +1,4 @@
-FROM quay.io/skopeo/stable:v1.2.0
+FROM quay.io/skopeo/stable:v1
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
