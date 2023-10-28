@@ -7,7 +7,7 @@ Updates the ClusterServiceVersion YAML file in place.
 """
 
 import argparse
-import ruamel.yaml as yaml
+from ruamel.yaml import YAML
 
 argparse = argparse.ArgumentParser()
 argparse.add_argument("csv_file", type=str, help="Path to ClusterServiceVersion YAML")
@@ -16,7 +16,8 @@ argparse.add_argument("ref", type=str, help="Reference to the related image")
 args = argparse.parse_args()
 
 with open(args.csv_file, "r") as stream:
-    csv = yaml.round_trip_load(stream)
+    yaml = YAML()
+    csv = yaml.load(stream)
 
 if not 'relatedImages' in csv['spec']:
     csv['spec']['relatedImages'] = []
@@ -32,5 +33,6 @@ if not present:
     csv['spec']['relatedImages'].append({ 'name': args.name, 'image': args.ref })
 
 with open(args.csv_file, 'w') as stream_out:
-    yaml.round_trip_dump(csv, stream_out, indent=2)
+    yaml = YAML()
+    yaml.dump(csv, stream_out)
 
