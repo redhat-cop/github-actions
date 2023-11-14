@@ -9,8 +9,9 @@ LABEL "com.github.actions.description"="Sets the Helm chart version and appVersi
 LABEL "com.github.actions.icon"="package"
 LABEL "com.github.actions.color"="purple"
 
+WORKDIR /
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-ADD entrypoint.py /entrypoint.py
+COPY entrypoint.py /entrypoint.py
 ENTRYPOINT [ "python", "/entrypoint.py" ]

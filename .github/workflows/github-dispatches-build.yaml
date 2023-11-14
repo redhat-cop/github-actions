@@ -26,6 +26,10 @@ jobs:
           TAGS+=($(grep "LABEL version" github-dispatches/Dockerfile_build | cut -d '"' -f 2))
           echo "${TAGS[*]}"
 
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: github-dispatches/Dockerfile_build
+
       - name: Build image
         id: build_image
         uses: redhat-actions/buildah-build@v2
