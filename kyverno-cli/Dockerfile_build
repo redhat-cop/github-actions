@@ -1,5 +1,5 @@
 # Builder image
-FROM registry.access.redhat.com/ubi9/ubi:9.1@sha256:49124e4acd09c98927882760476d617a85f155cb45759aea56b2ab020563c4b8 AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.3-1361.1699548029@sha256:6b95efc134c2af3d45472c0a2f88e6085433df058cc210abb2bb061ac4d74359 AS builder
 
 RUN export HELM_VERSION=3.11.1 && \
     curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
