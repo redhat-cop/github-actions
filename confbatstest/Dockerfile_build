@@ -14,9 +14,11 @@ ARG OC_VERSION=4.14.1
 # renovate: datasource=github-releases depName=open-policy-agent/opa
 ARG OPA_VERSION=v0.58.0
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
-ARG CONFTEST_VERSION=v0.39.2
+ARG CONFTEST_VERSION=v0.46.0
 # renovate: datasource=github-releases depName=instrumenta/kubeval
 ARG KUBEVAL_VERSION=latest
+
+SHELL ["/bin/bash", "-c"]
 
 RUN curl -L -o /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz && \
     tar -C /tmp -xzf /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz && \
