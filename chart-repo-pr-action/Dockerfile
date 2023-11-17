@@ -4,6 +4,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.3-1361.1699548032@sha256:c777
 ## https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
 USER root
 
+# renovate: datasource=github-releases depName=cli/cli
 ARG GH_VERSION=1.0.0
 
 ## Install git and diff

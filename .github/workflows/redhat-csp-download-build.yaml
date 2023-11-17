@@ -39,7 +39,7 @@ jobs:
           tags: "${{ steps.image_tags.outputs.IMAGE_TAGS }}"
 
       - name: Push to ghcr.io
-        if: ${{ env.branch_name == 'master' }} # Stops push running when dependabot creates a PR, which fails due to token
+        if: ${{ env.branch_name == 'main' }} # Stops push running when dependabot creates a PR, which fails due to token
         uses: redhat-actions/push-to-registry@9986a6552bc4571882a4a67e016b17361412b4df # v2
         with:
           image: ${{ steps.build_image.outputs.image }}
