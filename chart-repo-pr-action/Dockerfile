@@ -15,7 +15,7 @@ RUN microdnf install --assumeyes --nodocs tar git diffutils && \
     diff --version
 
 ## Install gh cli
-RUN curl -L -O https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz && \
+RUN curl -L -O https://github.com/cli/cli/releases/download/${GH_VERSION}/gh_${GH_VERSION//v}_linux_amd64.tar.gz && \
     tar -xzf gh_${GH_VERSION}_linux_amd64.tar.gz && \
     mv gh_${GH_VERSION}_linux_amd64/bin/gh /usr/local/bin && \
     rm -rf gh gh.tar.gz && \
