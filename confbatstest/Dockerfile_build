@@ -1,8 +1,6 @@
-# Builder image for go
-FROM registry.access.redhat.com/ubi9/go-toolset:1.20.10-2.1699551725@sha256:310fbbc9b2a6af87d730e244d5b20a1836df3ae295c290ffec2d4ef6a53a33f8 AS go-builder
-
-RUN PATH="/usr/local/go/bin:$PATH" GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
-    /tmp/go-bin/konstraint --help
+# Builder image for konstraint
+FROM ghcr.io/plexsystems/konstraint:v0.32.0 AS konstraint
+RUN echo "konstraint"
 
 # Builder image
 FROM registry.access.redhat.com/ubi9/ubi:9.3-1361.1699548029@sha256:6b95efc134c2af3d45472c0a2f88e6085433df058cc210abb2bb061ac4d74359 AS builder
@@ -16,7 +14,7 @@ ARG OC_VERSION=4.14.1
 # renovate: datasource=github-releases depName=open-policy-agent/opa
 ARG OPA_VERSION=v0.58.0
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
-ARG CONFTEST_VERSION=0.39.2
+ARG CONFTEST_VERSION=v0.39.2
 # renovate: datasource=github-releases depName=instrumenta/kubeval
 ARG KUBEVAL_VERSION=latest
 
@@ -37,7 +35,7 @@ RUN curl -L -o /tmp/opa_linux_amd64 https://github.com/open-policy-agent/opa/rel
     chmod +x /tmp/opa_linux_amd64 && \
     /tmp/opa_linux_amd64 --help
 
-RUN curl -L -o /tmp/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
+RUN curl -L -o /tmp/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz https://github.com/open-policy-agent/conftest/releases/download/${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION//v}_Linux_x86_64.tar.gz && \
     tar -C /tmp -xzf /tmp/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
     /tmp/conftest --version
 
@@ -80,7 +78,7 @@ RUN conftest --version
 COPY --from=builder /tmp/kubeval /usr/local/bin/kubeval
 RUN kubeval --version
 
-COPY --from=go-builder /tmp/go-bin/konstraint /usr/local/bin/konstraint
+COPY --from=konstraint /usr/bin/konstraint /usr/local/bin/konstraint
 RUN konstraint --help
 
 USER root
