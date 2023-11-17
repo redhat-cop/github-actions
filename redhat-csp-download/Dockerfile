@@ -1,1 +1,2 @@
-FROM ghcr.io/redhat-cop/github-actions/redhat-csp-download:latest@sha256:98e60278158bd85a37ef6117b3954f776e62d6ae41c48742d2f57ea02ce17f3d
+# renovate: datasource=github-releases depName=redhat-cop/github-actions
+FROM ghcr.io/redhat-cop/github-actions/redhat-csp-download:v4.0

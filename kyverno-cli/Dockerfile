@@ -1,1 +1,2 @@
-FROM ghcr.io/redhat-cop/github-actions/kyverno-cli:latest@sha256:23e5acdf3e7e9bfdfc402948f681d1241c16f08f55a0e394cbd24cb76639325e
+# renovate: datasource=github-releases depName=redhat-cop/github-actions
+FROM ghcr.io/redhat-cop/github-actions/kyverno-cli:v4.0
