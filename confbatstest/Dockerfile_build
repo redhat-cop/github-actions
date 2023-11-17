@@ -18,6 +18,8 @@ ARG CONFTEST_VERSION=v0.46.0
 # renovate: datasource=github-releases depName=instrumenta/kubeval
 ARG KUBEVAL_VERSION=latest
 
+SHELL ["/bin/bash", "-c"]
+
 RUN curl -L -o /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz && \
     tar -C /tmp -xzf /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz && \
     /tmp/linux-amd64/helm version
