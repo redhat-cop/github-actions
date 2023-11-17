@@ -19,12 +19,9 @@ jobs:
 
       - name: Get image tags
         id: image_tags
-        run: |
-          echo -n ::set-output name=IMAGE_TAGS::
-
-          TAGS=('latest')
-          TAGS+=($(grep "LABEL version" confbatstest/Dockerfile_build | cut -d '"' -f 2))
-          echo "${TAGS[*]}"
+        uses: redhat-cop/github-actions/get-image-version@main
+        with:
+          IMAGE_CONTEXT_DIR: ${{ env.context }}
 
       - uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # v3.1.0
         with:

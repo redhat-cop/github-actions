@@ -9,8 +9,6 @@ on:
     paths:
       - .github/workflows/set-helm-version.yaml
       - set-helm-version/**
-  schedule:
-    - cron: "0 0 1 * *"
 
 jobs:
   set-helm-version:
