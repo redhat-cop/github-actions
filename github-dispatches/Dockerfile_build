@@ -1,8 +1,10 @@
 # Builder image
 FROM registry.access.redhat.com/ubi9/ubi-minimal:9.3-1361.1699548032@sha256:c77792b8084ce5946c68f39024fa460ef7769c0eef3fce995e70299e21a7e166 AS builder
 
-RUN export JQ_VERSION=1.6 && \
-    curl -L -o /tmp/jq-linux64 https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
+# renovate: datasource=github-releases depName=stedolan/jq
+ARG JQ_VERSION=1.6
+
+RUN curl -L -o /tmp/jq-linux64 https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
     chmod +x /tmp/jq-linux64 && \
     /tmp/jq-linux64 --version
 

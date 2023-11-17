@@ -1,29 +1,37 @@
 # Builder image
 FROM registry.access.redhat.com/ubi9/ubi:9.3-1361.1699548029@sha256:6b95efc134c2af3d45472c0a2f88e6085433df058cc210abb2bb061ac4d74359 AS builder
 
-RUN export HELM_VERSION=3.11.1 && \
-    curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
-    tar -C /tmp -xzf /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
+# renovate: datasource=github-releases depName=helm/helm
+ARG HELM_VERSION=v3.11.1
+# renovate: datasource=github-releases depName=stedolan/jq
+ARG JQ_VERSION=1.6
+# renovate: datasource=repology depName=openshift-cli
+ARG OC_VERSION=4.12.0
+# renovate: datasource=github-releases depName=open-policy-agent/opa
+ARG KYVERNO_VERSION=v1.9.0
+
+RUN curl -L -o /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz && \
+    tar -C /tmp -xzf /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz && \
     /tmp/linux-amd64/helm version
 
-RUN export JQ_VERSION=1.6 && \
-    curl -L -o /tmp/jq-linux64 https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
+RUN curl -L -o /tmp/jq-linux64 https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 && \
     chmod +x /tmp/jq-linux64 && \
     /tmp/jq-linux64 --version
 
-RUN export OC_VERSION=4.12.0 && \
-    curl -L -o /tmp/openshift-client-linux.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz && \
+RUN curl -L -o /tmp/openshift-client-linux.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz && \
     tar -C /tmp -xzf /tmp/openshift-client-linux.tar.gz && \
     /tmp/oc version --client && \
     /tmp/kubectl version --client
 
-RUN export KYVERNO_VERSION=v1.9.0 && \
-    curl -L -o /tmp/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz https://github.com/kyverno/kyverno/releases/download/${KYVERNO_VERSION}/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz && \
+RUN curl -L -o /tmp/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz https://github.com/kyverno/kyverno/releases/download/${KYVERNO_VERSION}/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz && \
     tar -C /tmp -xzf /tmp/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz && \
     /tmp/kyverno --help
 
 # Runnable image
 FROM registry.access.redhat.com/ubi9/python-39:1-153.1699551718@sha256:81a000d48bca6b09e09a7b834e0b7c8b6ffb1907b7867e76df9b044e02f9a2ac
+
+# renovate: datasource=github-releases depName=bats-core/bats-core
+ARG BATS_VERSION=master
 
 LABEL version="1.1.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
@@ -57,8 +65,7 @@ RUN dnf upgrade --assumeyes && \
     diff --version && \
     bc --version
 
-RUN export BATS_VERSION=master && \
-    curl -L -o /tmp/${BATS_VERSION}.tar.gz https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz && \
+RUN curl -L -o /tmp/${BATS_VERSION}.tar.gz https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz && \
     tar -C /tmp -xzf /tmp/${BATS_VERSION}.tar.gz && \
     /tmp/bats-core-${BATS_VERSION}/install.sh /tmp/bats && \
     ln -s /tmp/bats/bin/bats /usr/local/bin/bats && \
