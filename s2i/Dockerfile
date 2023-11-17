@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.1@sha256:95413c8dacaac773421428947a431c1cb099d19b4b1125df77d5d1cd2f463ab8
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.3-1361.1699548032@sha256:c77792b8084ce5946c68f39024fa460ef7769c0eef3fce995e70299e21a7e166
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
