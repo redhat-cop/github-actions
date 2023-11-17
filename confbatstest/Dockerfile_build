@@ -1,14 +1,6 @@
 # Builder image for go
 FROM registry.access.redhat.com/ubi9/go-toolset:1.20.10-2.1699551725@sha256:310fbbc9b2a6af87d730e244d5b20a1836df3ae295c290ffec2d4ef6a53a33f8 AS go-builder
 
-# go1.19 not released yet - so need to manaully upgrade
-USER root
-RUN curl -L -o /tmp/go1.19.linux-amd64.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz && \
-    tar -xzf /tmp/go1.19.linux-amd64.tar.gz && \
-    mv go /usr/local && \
-    PATH="/usr/local/go/bin:$PATH" && \
-    go version
-
 RUN PATH="/usr/local/go/bin:$PATH" GOBIN=/tmp/go-bin go install github.com/plexsystems/konstraint@latest && \
     /tmp/go-bin/konstraint --help
 

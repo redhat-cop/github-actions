@@ -9,8 +9,6 @@ on:
     paths:
       - .github/workflows/redhat-csp-download.yaml
       - redhat-csp-download/**
-  schedule:
-    - cron: "0 0 1 * *"
 
 jobs:
   redhat-csp-download:

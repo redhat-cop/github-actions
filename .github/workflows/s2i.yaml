@@ -9,8 +9,6 @@ on:
     paths:
       - .github/workflows/s2i.yaml
       - s2i/**
-  schedule:
-    - cron: "0 0 1 * *"
 
 jobs:
   s2i:
