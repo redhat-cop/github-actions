@@ -1,1 +1,1 @@
-FROM ghcr.io/redhat-cop/github-actions/redhat-csp-download:latest@sha256:98e60278158bd85a37ef6117b3954f776e62d6ae41c48742d2f57ea02ce17f3d
+FROM ghcr.io/redhat-cop/github-actions/redhat-csp-download:latest@sha256:76b45455a50269851ff234af7546b8fa5fde909d6d96bac0efce9117ca35052d
