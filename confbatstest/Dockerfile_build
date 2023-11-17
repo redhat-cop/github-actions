@@ -1,5 +1,5 @@
 # Builder image for go
-FROM registry.access.redhat.com/ubi9/go-toolset:1.18@sha256:ff992007f16f350a6a4fe4d32324e6a92651e963c769ff544ca57f6c5392d5e3 AS go-builder
+FROM registry.access.redhat.com/ubi9/go-toolset:1.20.10-2.1699551725@sha256:310fbbc9b2a6af87d730e244d5b20a1836df3ae295c290ffec2d4ef6a53a33f8 AS go-builder
 
 # go1.19 not released yet - so need to manaully upgrade
 USER root
