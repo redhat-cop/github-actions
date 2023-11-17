@@ -1,1 +1,1 @@
-FROM ghcr.io/redhat-cop/github-actions/github-dispatches:latest
+FROM ghcr.io/redhat-cop/github-actions/github-dispatches:latest@sha256:20eb7ebde992d39045e142d7087cd9b0d4723b469097d8f7bc9acc206c341163

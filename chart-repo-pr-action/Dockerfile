@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.1
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.1@sha256:95413c8dacaac773421428947a431c1cb099d19b4b1125df77d5d1cd2f463ab8
 
 ## According to the GH Actions doc, the user must run as root
 ## https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user

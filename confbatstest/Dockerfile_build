@@ -1,5 +1,5 @@
 # Builder image for go
-FROM registry.access.redhat.com/ubi9/go-toolset:1.18 AS go-builder
+FROM registry.access.redhat.com/ubi9/go-toolset:1.18@sha256:ff992007f16f350a6a4fe4d32324e6a92651e963c769ff544ca57f6c5392d5e3 AS go-builder
 
 # go1.19 not released yet - so need to manaully upgrade
 USER root
@@ -13,7 +13,7 @@ RUN PATH="/usr/local/go/bin:$PATH" GOBIN=/tmp/go-bin go install github.com/plexs
     /tmp/go-bin/konstraint --help
 
 # Builder image
-FROM registry.access.redhat.com/ubi9/ubi:9.1 AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.1@sha256:49124e4acd09c98927882760476d617a85f155cb45759aea56b2ab020563c4b8 AS builder
 
 RUN export HELM_VERSION=3.11.1 && \
     curl -L -o /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
@@ -47,7 +47,7 @@ RUN export KUBEVAL_VERSION=latest && \
     /tmp/kubeval --version
 
 # Runnable image
-FROM registry.access.redhat.com/ubi9/python-39:1
+FROM registry.access.redhat.com/ubi9/python-39:1@sha256:81a000d48bca6b09e09a7b834e0b7c8b6ffb1907b7867e76df9b044e02f9a2ac
 
 LABEL version="1.8.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"

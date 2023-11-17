@@ -1,1 +1,1 @@
-FROM ghcr.io/redhat-cop/github-actions/kyverno-cli:latest
+FROM ghcr.io/redhat-cop/github-actions/kyverno-cli:latest@sha256:728b2d5cc038401e24ea4437cbcefcda1fa8985a2c9b0e63b9c421b31f0ca6eb

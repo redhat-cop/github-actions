@@ -1,1 +1,1 @@
-FROM ghcr.io/redhat-cop/github-actions/confbatstest:latest
+FROM ghcr.io/redhat-cop/github-actions/confbatstest:latest@sha256:d3c5704e19974b815ac8ad678512ecaf2aa9fb63cee5c3e7db04fe95c4a3a917

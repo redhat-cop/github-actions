@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Get image tags
         id: image_tags
@@ -26,14 +26,14 @@ jobs:
           TAGS+=($(grep "LABEL version" confbatstest/Dockerfile_build | cut -d '"' -f 2))
           echo "${TAGS[*]}"
 
-      - uses: hadolint/hadolint-action@v3.1.0
+      - uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # v3.1.0
         with:
           dockerfile: confbatstest/Dockerfile_build
           ignore: DL3041 # https://github.com/hadolint/hadolint/wiki/DL3041
 
       - name: Build image
         id: build_image
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@b4dc19b4ba891854660ab1f88a097d45aa158f76 # v2
         with:
           context: ${{ env.context }}
           dockerfiles: |
@@ -44,7 +44,7 @@ jobs:
 
       - name: Push to ghcr.io
         if: ${{ env.branch_name == 'master' }} # Stops push running when dependabot creates a PR, which fails due to token
-        uses: redhat-actions/push-to-registry@v2
+        uses: redhat-actions/push-to-registry@9986a6552bc4571882a4a67e016b17361412b4df # v2
         with:
           image: ${{ steps.build_image.outputs.image }}
           registry: ghcr.io/${{ github.repository }}
