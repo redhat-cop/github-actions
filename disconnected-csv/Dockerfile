@@ -1,4 +1,4 @@
-FROM quay.io/skopeo/stable:v1@sha256:baaaf8c5fdfa71a7c5ce67826998feccff5b90b1a749825f19789d1a473c3d8a
+FROM quay.io/skopeo/stable:v1@sha256:6d9de344ec0664bd08c313436c80dcea79fd0f7ad9e793625588f97fae06a41c
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
