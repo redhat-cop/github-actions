@@ -1,1 +1,2 @@
-FROM ghcr.io/redhat-cop/github-actions/github-dispatches:latest@sha256:ca108275cac264516979a75a8d5a8cbe27fa50de3fff8a70ebfb87a5dcad73a3
+# renovate: datasource=github-releases depName=redhat-cop/github-actions
+FROM ghcr.io/redhat-cop/github-actions/github-dispatches:v4.0

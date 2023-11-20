@@ -1,1 +1,2 @@
-FROM ghcr.io/redhat-cop/github-actions/confbatstest:latest@sha256:51d818e46a4b1bc34e09d9eaafd69bfa6ee904759f115ae42dd3c297fd4c9840
+# renovate: datasource=github-releases depName=redhat-cop/github-actions
+FROM ghcr.io/redhat-cop/github-actions/confbatstest:v4.0

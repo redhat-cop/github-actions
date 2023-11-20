@@ -51,7 +51,7 @@ FROM registry.access.redhat.com/ubi9/python-39:1-153.1699551718@sha256:81a000d48
 # renovate: datasource=github-releases depName=bats-core/bats-core
 ARG BATS_VERSION=master
 
-LABEL version="1.8.0"
+LABEL version="4.0.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
 LABEL homepage="http://github.com/redhat-cop/github-actions/confbatstest"
 LABEL maintainer="Red Hat CoP"
