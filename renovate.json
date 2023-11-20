@@ -4,5 +4,13 @@
     "config:best-practices",
     "regexManagers:dockerfileVersions",
     "schedule:earlyMondays"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["quay.io/skopeo/stable"],
+      "updateTypes": ["pinDigest"],
+      "enabled": false
+    }
   ]
 }
