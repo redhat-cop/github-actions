@@ -7,9 +7,15 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["quay.io/skopeo/stable"],
-      "updateTypes": ["pinDigest"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "quay.io/skopeo/stable"
+      ],
+      "matchUpdateTypes": [
+        "pinDigest"
+      ],
       "enabled": false
     }
   ]
