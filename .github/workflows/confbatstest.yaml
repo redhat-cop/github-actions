@@ -17,6 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
+      - uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # v3.1.0
+        with:
+          dockerfile: confbatstest/Dockerfile_build
+          ignore: DL3041 # https://github.com/hadolint/hadolint/wiki/DL3041
+
       - name: Switch the action to use the Dockerfile_build
         run: |
           mv confbatstest/Dockerfile confbatstest/Dockerfile_runnable
