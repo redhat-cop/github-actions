@@ -42,8 +42,13 @@ jobs:
               echo "MINOR_VERSION missmatch"
               exit 1
           fi
+          
+          expected_tags=("latest" "v1.32.1" "v1.32")
+          if [[ "${GITHUB_REF}" =~ refs/tags/(.*) ]]; then
+            expected_tags+=("git-${BASH_REMATCH[1]}")
+          fi
 
-          if [[ "${tags[*]}" != "latest v1.32.1 v1.32" ]]; then
+          if [[ "${tags[*]}" != "${expected_tags[*]}" ]]; then
               echo "IMAGE_TAGS missmatch"
               exit 1
           fi
