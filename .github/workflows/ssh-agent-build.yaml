@@ -30,7 +30,7 @@ jobs:
           popd
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        uses: wearerequired/lint-action@548d8a7c4b04d3553d32ed5b6e91eb171e10e7bb # v2
         with:
           continue_on_error: false
           eslint_dir: ssh-agent/
