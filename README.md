@@ -1,3 +1,5 @@
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/redhat-cop/github-actions/badge)](https://securityscorecards.dev/viewer/?uri=github.com/redhat-cop/github-actions)
+
 # Repository Layout
 
 This repository contains:
