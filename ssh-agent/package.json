@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "eslint": "8.54.0",
-    "eslint-config-prettier": "8.10.0",
+    "eslint-config-prettier": "9.0.0",
     "ncc": "0.3.6",
     "prettier": "2.8.8"
   }
