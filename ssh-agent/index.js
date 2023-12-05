@@ -12,12 +12,12 @@ function run() {
 
     proc.execSync(
       `ssh-keyscan -p ${core.getInput("ssh_port")} ${core.getInput(
-        "domain"
+        "domain",
       )} >> ${process.env["HOME"]}/.ssh/known_hosts`,
       {
         stdio: [null, null, null],
         timeout: 20000,
-      }
+      },
     );
 
     console.log("Finished building known hosts!");

@@ -17,6 +17,6 @@
     "eslint": "8.55.0",
     "eslint-config-prettier": "9.1.0",
     "ncc": "0.3.6",
-    "prettier": "2.8.8"
+    "prettier": "3.1.0"
   }
 }
