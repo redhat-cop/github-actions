@@ -17,6 +17,18 @@
         "pinDigest"
       ],
       "enabled": false
+    },
+    {
+      "matchDepTypes": [
+        "action"
+      ],
+      "matchPackageNames": [
+        "slsa-framework/slsa-github-generator"
+      ],
+      "matchUpdateTypes": [
+        "pinDigest"
+      ],
+      "enabled": false
     }
   ]
 }
