@@ -8,6 +8,9 @@ on:
 
 jobs:
   build-confbatstest:
+    permissions:
+      contents: read
+      packages: write
     env:
       context: confbatstest
       image_name: confbatstest
@@ -44,9 +47,79 @@ jobs:
       - name: Push to ghcr.io
         if: ${{ env.ref_type == 'tag' || env.owner != 'redhat-cop' }} # Stops push running when bots create a PR, which fails due to token
         uses: redhat-actions/push-to-registry@9986a6552bc4571882a4a67e016b17361412b4df # v2
+        id: push_image
         with:
           image: ${{ steps.build_image.outputs.image }}
           registry: ghcr.io/${{ github.repository }}
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           tags: ${{ steps.build_image.outputs.tags }}
+
+    outputs:
+      image_repo: "ghcr.io/${{ github.repository }}/${{ steps.build_image.outputs.image }}"
+      image_digest: "${{ steps.push_image.outputs.digest }}"
+      image_uri: "ghcr.io/${{ github.repository }}/${{ steps.build_image.outputs.image }}@${{ steps.push_image.outputs.digest }}"
+
+  sign-confbatstest:
+    needs: [build-confbatstest]
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    if: ${{ github.ref_type == 'tag' || github.repository_owner != 'redhat-cop' }} # Stops push running when bots create a PR, which fails due to token
+    env:
+      image_uri: ${{ needs.build-confbatstest.outputs.image_uri }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup cosign
+        uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8 # v3
+
+      - name: Cosign login
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | cosign login --username ${{ github.repository_owner }} --password-stdin ghcr.io
+
+      - name: Sign Image
+        run: |
+          cosign sign --yes ${image_uri}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@22d2755f774d925b191a185b74e782a4b0638a41 # 0.15.0
+        env:
+          TRIVY_USERNAME: ${{ github.repository_owner }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          scan-type: image
+          image-ref: ${{ env.image_uri }}
+          format: "cosign-vuln"
+          output: "cosign-vuln.json"
+
+      - name: Run Trivy SBOM generator
+        uses: aquasecurity/trivy-action@22d2755f774d925b191a185b74e782a4b0638a41 # 0.15.0
+        env:
+          TRIVY_USERNAME: ${{ github.repository_owner }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          scan-type: image
+          image-ref: ${{ env.image_uri }}
+          format: "spdx-json"
+          output: "spdx-json.json"
+
+      - name: Attach attestations
+        run: |
+          cosign attest --yes --type vuln --predicate cosign-vuln.json ${image_uri}
+          cosign attest --yes --type cyclonedx --predicate spdx-json.json ${image_uri}
+
+  provenance:
+    needs: [build-confbatstest,sign-confbatstest]
+    permissions:
+      actions: read # for detecting the Github Actions environment.
+      id-token: write # for creating OIDC tokens for signing.
+      packages: write # for uploading attestations.
+    if: ${{ github.ref_type == 'tag' || github.repository_owner != 'redhat-cop' }} # Stops push running when bots create a PR, which fails due to token
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+    with:
+      image: ${{ needs.build-confbatstest.outputs.image_repo }}
+      digest: ${{ needs.build-confbatstest.outputs.image_digest }}
+      registry-username: ${{ github.repository_owner }}
+    secrets:
+      registry-password: ${{ secrets.GITHUB_TOKEN }}
