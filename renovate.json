@@ -13,10 +13,7 @@
       "matchPackageNames": [
         "quay.io/skopeo/stable"
       ],
-      "matchUpdateTypes": [
-        "pinDigest"
-      ],
-      "enabled": false
+      "pinDigests": false
     },
     {
       "matchDepTypes": [
