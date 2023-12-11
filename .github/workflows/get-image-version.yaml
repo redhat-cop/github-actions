@@ -10,6 +10,9 @@ on:
       - .github/workflows/get-image-version.yaml
       - get-image-version/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   get-image-version:
     env:

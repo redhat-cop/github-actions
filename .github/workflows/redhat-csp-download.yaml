@@ -10,6 +10,9 @@ on:
       - .github/workflows/redhat-csp-download.yaml
       - redhat-csp-download/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   redhat-csp-download:
     runs-on: ubuntu-latest

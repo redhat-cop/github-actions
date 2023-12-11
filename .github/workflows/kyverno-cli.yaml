@@ -10,6 +10,9 @@ on:
       - .github/workflows/kyverno-cli.yaml
       - kyverno-cli/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   kyverno-cli:
     runs-on: ubuntu-latest
