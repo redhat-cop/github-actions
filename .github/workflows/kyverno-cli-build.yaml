@@ -6,6 +6,9 @@ on:
       - .github/workflows/kyverno-cli-build.yaml
       - kyverno-cli/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   build-kyverno-cli:
     env:
@@ -15,6 +18,8 @@ jobs:
       ref_type: ${{ github.ref_type }}
       owner: ${{ github.repository_owner }}
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4

@@ -6,10 +6,12 @@ on:
       - .github/workflows/confbatstest-build.yaml
       - confbatstest/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   build-confbatstest:
     permissions:
-      contents: read
       packages: write
     env:
       context: confbatstest
@@ -63,7 +65,6 @@ jobs:
   sign-confbatstest:
     needs: [build-confbatstest]
     permissions:
-      contents: read
       id-token: write
       packages: write
     if: ${{ github.ref_type == 'tag' || github.repository_owner != 'redhat-cop' }} # Stops push running when bots create a PR, which fails due to token

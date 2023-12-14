@@ -10,6 +10,9 @@ on:
       - .github/workflows/ssh-agent.yaml
       - ssh-agent/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   ssh-agent:
     runs-on: ubuntu-latest

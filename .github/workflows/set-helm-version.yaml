@@ -10,6 +10,9 @@ on:
       - .github/workflows/set-helm-version.yaml
       - set-helm-version/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   set-helm-version:
     runs-on: ubuntu-latest

@@ -10,6 +10,9 @@ on:
       - disconnected-csv/**
       - .github/workflows/disconnected-csv.yaml
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   disconnected-csv:
     runs-on: ubuntu-latest
