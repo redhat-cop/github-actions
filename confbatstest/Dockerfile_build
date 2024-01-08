@@ -1,5 +1,5 @@
 # Builder image for konstraint
-FROM ghcr.io/plexsystems/konstraint:v0.33.0@sha256:1dfa2e935d4d8783195bccbdf5d935166c10105a274d2ab6cd1fd2a46d4a5761 AS konstraint
+FROM ghcr.io/plexsystems/konstraint:v0.34.0@sha256:7c5179bccd5e734c989607ebace0cf314557a184d3980780fe94b3e382efeb54 AS konstraint
 RUN echo "konstraint"
 
 # Builder image
