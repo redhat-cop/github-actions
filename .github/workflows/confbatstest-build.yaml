@@ -84,7 +84,7 @@ jobs:
           cosign sign --yes ${image_uri}
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@91713af97dc80187565512baba96e4364e983601 # 0.16.0
+        uses: aquasecurity/trivy-action@d43c1f16c00cfd3978dde6c07f4bbcf9eb6993ca # 0.16.1
         env:
           TRIVY_USERNAME: ${{ github.repository_owner }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
@@ -95,7 +95,7 @@ jobs:
           output: "cosign-vuln.json"
 
       - name: Run Trivy SBOM generator
-        uses: aquasecurity/trivy-action@91713af97dc80187565512baba96e4364e983601 # 0.16.0
+        uses: aquasecurity/trivy-action@d43c1f16c00cfd3978dde6c07f4bbcf9eb6993ca # 0.16.1
         env:
           TRIVY_USERNAME: ${{ github.repository_owner }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
