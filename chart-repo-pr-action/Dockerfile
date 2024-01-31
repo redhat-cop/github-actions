@@ -5,7 +5,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.3-1475@sha256:a340f4b9fb261a7
 USER root
 
 # renovate: datasource=github-releases depName=cli/cli
-ARG GH_VERSION=v2.40.1
+ARG GH_VERSION=v2.43.1
 
 ## Install git and diff
 RUN microdnf install --assumeyes --nodocs tar git diffutils && \
