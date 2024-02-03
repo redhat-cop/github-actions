@@ -2,7 +2,7 @@
 FROM registry.access.redhat.com/ubi9/ubi:9.3-1476@sha256:fc300be6adbdf2ca812ad01efd0dee2a3e3f5d33958ad6cd99159e25e9ee1398 AS builder
 
 # renovate: datasource=github-releases depName=helm/helm
-ARG HELM_VERSION=v3.13.3
+ARG HELM_VERSION=v3.14.0
 # renovate: datasource=github-releases depName=stedolan/jq
 ARG JQ_VERSION=1.6
 # renovate: datasource=repology depName=homebrew/openshift-cli
