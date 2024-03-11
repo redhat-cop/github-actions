@@ -44,7 +44,7 @@ jobs:
 
       - name: Push to ghcr.io
         if: ${{ env.ref_type == 'tag' || env.owner != 'redhat-cop' }} # Stops push running when bots create a PR, which fails due to token
-        uses: redhat-actions/push-to-registry@9986a6552bc4571882a4a67e016b17361412b4df # v2
+        uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2
         with:
           image: ${{ steps.build_image.outputs.image }}
           registry: ghcr.io/${{ github.repository }}
