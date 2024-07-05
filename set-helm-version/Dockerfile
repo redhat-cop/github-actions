@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/python-39:1-182.1715774360@sha256:24a03d125e857440f74b445d8deb2c18775dd7c3c4373ce1662a00cf97ef8e25
+FROM registry.access.redhat.com/ubi9/python-39:1-186.1720018722@sha256:145f08b49fabbfec82c9042f6de0d3160c6005ecf700b7fcee3c482e24fd0bf6
 
 LABEL version="1.1.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
