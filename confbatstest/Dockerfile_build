@@ -12,7 +12,7 @@ ARG JQ_VERSION=1.6
 # renovate: datasource=repology depName=homebrew/openshift-cli
 ARG OC_VERSION=4.15.12
 # renovate: datasource=github-releases depName=open-policy-agent/opa
-ARG OPA_VERSION=v0.64.1
+ARG OPA_VERSION=v0.66.0
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
 ARG CONFTEST_VERSION=v0.54.0
 # renovate: datasource=github-releases depName=instrumenta/kubeval
