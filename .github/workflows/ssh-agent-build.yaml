@@ -23,25 +23,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
         with:
-          node-version: 16
+          node-version: 21
 
       - name: Install Node.js dependencies
         run: |
           pushd ssh-agent/
           npm install
-          npm i -g @vercel/ncc
           popd
 
       - name: Run linters
-        uses: wearerequired/lint-action@548d8a7c4b04d3553d32ed5b6e91eb171e10e7bb # v2
-        with:
-          continue_on_error: false
-          eslint_dir: ssh-agent/
-          eslint_auto_fix: false
-          eslint: true
-          prettier_dir: ssh-agent/
-          prettier_auto_fix: false
-          prettier: true
+        run: |
+          pushd ssh-agent/
+          npm run prettier
+          npm run eslint
+          popd
 
       - name: Compile Node.js dependencies
         run: |
