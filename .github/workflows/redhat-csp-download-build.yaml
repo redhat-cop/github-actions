@@ -6,6 +6,9 @@ on:
       - .github/workflows/redhat-csp-download-build.yaml
       - redhat-csp-download/**
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   build-redhat-csp-download:
     env:
