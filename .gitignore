@@ -22,4 +22,3 @@
 *.iml
 
 ssh-agent/node_modules
-ssh-agent/package-lock.json
