@@ -11,7 +11,7 @@ LABEL "com.github.actions.color"="purple"
 
 WORKDIR /
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --require-hashes --no-deps --no-cache-dir -r requirements.txt
 
 COPY entrypoint.py /entrypoint.py
 ENTRYPOINT [ "python", "/entrypoint.py" ]

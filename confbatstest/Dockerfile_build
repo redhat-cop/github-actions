@@ -101,7 +101,7 @@ RUN curl -L -o /tmp/${BATS_VERSION}.tar.gz https://github.com/bats-core/bats-cor
 USER 1001
 
 COPY requirements.txt /requirements.txt
-RUN pip3 install --no-cache-dir -r /requirements.txt && \
+RUN pip3 install --require-hashes --no-deps --no-cache-dir -r /requirements.txt && \
     yq --version
 
 COPY entrypoint.sh /entrypoint.sh
