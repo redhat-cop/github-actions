@@ -16,3 +16,4 @@ PyYAML==6.0.1
 requests==2.32.3
 resolvelib==1.0.1
 urllib3==2.2.2
+zipp==3.19.2
