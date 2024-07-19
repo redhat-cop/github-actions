@@ -1,1 +1,3 @@
-ruamel.yaml
+pip==24.1
+ruamel.yaml==0.18.6
+ruamel.yaml.clib==0.2.8
