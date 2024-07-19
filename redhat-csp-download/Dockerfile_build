@@ -10,7 +10,7 @@ LABEL "com.github.actions.branding.icon"="monitor"
 LABEL "com.github.actions.branding.color"="purple"
 
 COPY ansible /ansible
-RUN pip3 install --no-cache-dir -r /ansible/requirements.txt && \
+RUN pip3 install --require-hashes --no-deps --no-cache-dir -r /ansible/requirements.txt && \
     ansible --version && \
     ansible-galaxy --version && \
     ansible-playbook --version

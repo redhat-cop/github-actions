@@ -28,7 +28,7 @@ jobs:
       - name: Install Node.js dependencies
         run: |
           pushd ssh-agent/
-          npm install
+          npm ci
           popd
 
       - name: Run linters
