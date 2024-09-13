@@ -8,9 +8,9 @@ ansible==10.4.0 \
     --hash=sha256:5c12048831a6690fc865dfe03dc8ab61c3ba08b5d01b249a16b247ad99a60bc0 \
     --hash=sha256:cb386e75214bc5420b5ab412bfb64fb196c20559738e0f091892852aa5f5c177
     # via -r requirements.in
-ansible-core==2.17.2 \
-    --hash=sha256:3dfa15249069ea0d001257902c968ddf9bb71d965769b8802bce85187556c5d8 \
-    --hash=sha256:d51af721c35c00308d5786878497a346ccdd764302cb793f3b6b8d60038f9a6c
+ansible-core==2.17.4 \
+    --hash=sha256:44a1f30076796536ba2455cad18d36e62870f04e632e3ca2ebe970d7beacf24d \
+    --hash=sha256:a36c9ab8e84d5d51f9fffe389d6ac7e81c8d0df6af8c12429ddbb71e8d69b21e
     # via
     #   -r requirements.in
     #   ansible
