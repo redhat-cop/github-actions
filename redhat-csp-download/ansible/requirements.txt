@@ -170,7 +170,7 @@ charset-normalizer==3.3.2 \
     # via
     #   -r requirements.in
     #   requests
-cryptography==43.0.0 \
+cryptography==43.0.3 \
     --hash=sha256:0663585d02f76929792470451a5ba64424acc3cd5227b03921dab0e2f27b1709 \
     --hash=sha256:08a24a7070b2b6804c1940ff0f910ff728932a9d0e80e7814234269f9d46d069 \
     --hash=sha256:232ce02943a579095a339ac4b390fbbe97f5b5d5d107f8a08260ea2768be8cc2 \
