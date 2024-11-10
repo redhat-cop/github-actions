@@ -510,9 +510,9 @@ urllib3==2.2.2 \
     # via
     #   -r requirements.in
     #   requests
-zipp==3.19.2 \
-    --hash=sha256:bf1dcf6450f873a13e952a29504887c89e6de7506209e5b1bcc3460135d4de19 \
-    --hash=sha256:f091755f667055f2d02b32c53771a7a6c8b47e1fdbc4b72a8b9072b3eef8015c
+zipp==3.21.0 \
+    --hash=sha256:2c9958f6430a2040341a52eb608ed6dd93ef4392e02ffe219417c1b28b5dd1f4 \
+    --hash=sha256:ac1bbe05fd2991f160ebce24ffbac5f6d11d83dc90891255885223d42b3cd931
     # via -r requirements.in
 
 # WARNING: The following packages were not pinned, but pip requires them to be
