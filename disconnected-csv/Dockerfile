@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=containers/skopeo
-FROM quay.io/skopeo/stable:v1.15.2
+FROM quay.io/skopeo/stable:v1.17.0
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/redhat-cop/github-actions"
