@@ -24,5 +24,14 @@
       ],
       "pinDigests": false
     }
+  ],
+  "ignorePaths": [
+    "chart-repo-pr-action/**",
+    "github-dispatches/**",
+    "kyverno-cli/**",
+    "redhat-csp-download/**",
+    "s2i/**",
+    "set-helm-version/**",
+    "ssh-agent/**"
   ]
 }

@@ -1,6 +1,6 @@
 ![Test kyverno-cli](https://github.com/redhat-cop/github-actions/workflows/Test%20kyverno-cli/badge.svg)
 
-# kyverno-cli GitHub Action
+# kyverno-cli GitHub Action (NOT MAINTAINED)
 
 This action uses [BATS](https://github.com/bats-core/bats-core) and [kyverno](https://github.com/kyverno/kyverno).
 It also contains several tools which are used for JSON and YAML manipulation:

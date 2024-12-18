@@ -1,6 +1,6 @@
 ![Test redhat-csp-download](https://github.com/redhat-cop/github-actions/workflows/Test%20redhat-csp-download/badge.svg)
 
-# redhat-csp-download GitHub Action
+# redhat-csp-download GitHub Action (NOT MAINTAINED)
 
 This action uses [redhat-csp-download](https://github.com/ansible-middleware/redhat-csp-download) to download resources from the Red Hat Customer Portal,
 which can be used as part of your GitHub integration tests.

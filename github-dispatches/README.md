@@ -1,6 +1,6 @@
 ![Test github-dispatches](https://github.com/redhat-cop/github-actions/workflows/Test%20github-dispatches/badge.svg)
 
-# github-dispatches GitHub Action
+# github-dispatches GitHub Action (NOT MAINTAINED)
 
 This action triggers a GitHub CI [dispatches event](https://blog.marcnuri.com/triggering-github-actions-across-different-repositories).
 

@@ -1,4 +1,4 @@
-# Source-to-Image (S2I) GitHub Action
+# Source-to-Image (S2I) GitHub Action (NOT MAINTAINED)
 
 This action uses [Source2Image](https://github.com/openshift/source-to-image) to build container
 images from source. After the image is built, it will automatically be pushed to a desired

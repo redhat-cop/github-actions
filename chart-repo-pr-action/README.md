@@ -1,4 +1,4 @@
-# chart-repo-pr-action
+# chart-repo-pr-action (NOT MAINTAINED)
 This action is used to copy Helm charts to a central Helm chart repository by automatically submitting a PR. The below diagram depicts the intended usage of this Action.
 
 ![Diagram of chart-repo-pr-action](./images/chart-repo-pr-action.png)

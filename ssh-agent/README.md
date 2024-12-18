@@ -1,4 +1,4 @@
-# SSH Agent GitHub Action
+# SSH Agent GitHub Action (NOT MAINTAINED)
 
 This action sets up an `ssh-agent` (including `known_hosts` and a private key) for use throughout the rest of your GitHub Workflow. This can be used if you need to SSH into any machines for deployment purposes, or if you need SSH configured for accessing any Git repositories on hosts other than GitHub.com. It exports `SSH_AUTH_SOCK` and `SSH_AGENT_PID` environment variables for any downstream steps to automatically consume.
 
