@@ -1,4 +1,4 @@
-argcomplete==3.5.1
+argcomplete==3.5.2
 pip==24.1
 PyYAML==6.0.2
 tomlkit==0.13.2
