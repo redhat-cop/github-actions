@@ -3,7 +3,7 @@ FROM ghcr.io/plexsystems/konstraint:v0.36.0@sha256:bd68202968e50ec54ef5385c2f854
 RUN echo "konstraint"
 
 # Builder image
-FROM registry.access.redhat.com/ubi9/ubi:9.5-1734495538@sha256:38791b293262ac2169eca2717e68e626a047d2b89fbd1da544db24ed0204efeb AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.5-1738814488@sha256:be214e191bbe3f4d0f16a5a4f5642e1f32fccd6fae7d2b6c6acb066ba51fb507 AS builder
 
 # renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=v3.17.0
