@@ -1,6 +1,22 @@
-# Builder image for konstraint
-FROM ghcr.io/plexsystems/konstraint:v0.36.0@sha256:bd68202968e50ec54ef5385c2f854c43fad70e7556f27f0bce1fe93ec76ab517 AS konstraint
-RUN echo "konstraint"
+# Konstraint Builder image
+FROM registry.access.redhat.com/ubi9/go-toolset@sha256:3403e282d00e6f667822a652fe6b17c0fc5fdb04cc28509eb515381fb8496b39 AS konstraint
+
+# renovate: datasource=github-releases depName=plexsystems/konstraint
+ARG KONSTRAINT_VERSION=v0.39.0
+
+# go1.23 not released yet - so need to manually upgrade
+USER root
+RUN curl -L -o /tmp/go1.23.linux-amd64.tar.gz https://go.dev/dl/go1.23.linux-amd64.tar.gz && \
+    tar -xzf /tmp/go1.23.linux-amd64.tar.gz && \
+    mv go /usr/local && \
+    PATH="/usr/local/go/bin:$PATH" && \
+    go version
+
+RUN PATH="/usr/local/go/bin:$PATH" go install github.com/plexsystems/konstraint@${KONSTRAINT_VERSION} && \
+    mv ~/go/bin/konstraint /tmp/konstraint && \
+    /tmp/konstraint --help
+
+USER 1001
 
 # Builder image
 FROM registry.access.redhat.com/ubi9/ubi:9.5-1738814488@sha256:be214e191bbe3f4d0f16a5a4f5642e1f32fccd6fae7d2b6c6acb066ba51fb507 AS builder
@@ -80,7 +96,7 @@ RUN conftest --version
 COPY --from=builder /tmp/kubeval /usr/local/bin/kubeval
 RUN kubeval --version
 
-COPY --from=konstraint /usr/bin/konstraint /usr/local/bin/konstraint
+COPY --from=konstraint /tmp/konstraint /usr/local/bin/konstraint
 RUN konstraint --help
 
 USER root
