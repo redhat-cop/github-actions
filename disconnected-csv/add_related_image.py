@@ -35,4 +35,3 @@ if not present:
 with open(args.csv_file, 'w') as stream_out:
     yaml = YAML()
     yaml.dump(csv, stream_out)
-

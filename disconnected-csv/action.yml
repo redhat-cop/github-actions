@@ -17,7 +17,7 @@ inputs:
     default: 'RELATED_IMAGE_'
   TAGS_TO_DIGESTS:
     description: |
-      If set, this triggers lookup and conversion to tag-based references 
+      If set, this triggers lookup and conversion to tag-based references
       to digest-based references. All tag-based references in the CSV will be
       replaced with their digest equivalents. To avoid this conversion,
       leave this input unset.

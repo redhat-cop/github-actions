@@ -17,7 +17,7 @@ exec_raw() {
   local COMMAND="${1}"
 
   echo "Executing: ${COMMAND}"
-  
+
   eval "${COMMAND}"
 }
 

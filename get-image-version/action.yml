@@ -38,4 +38,3 @@ runs:
         echo "VERSION=$(echo $VERSION)" >> $GITHUB_OUTPUT
         echo "MINOR_VERSION=$(echo ${VERSION%.*})" >> $GITHUB_OUTPUT
         echo "IMAGE_TAGS=$(echo ${TAGS[*]})" >> $GITHUB_OUTPUT
-        

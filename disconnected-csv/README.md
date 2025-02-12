@@ -24,7 +24,7 @@ If no environment variables referencing container image refs are found, the acti
 NOTE - no related images found injected as environment variables prefixed with ${RELATED_IMAGE_ENV_PREFIX}.
 
 If your Operator deploys an application container, it is recommended that you inject the container image reference
-as an environment variable, and define this environment variable in your Operator Deployment definition 
+as an environment variable, and define this environment variable in your Operator Deployment definition
 in your ClusterServiceVersion.
 
 Example:

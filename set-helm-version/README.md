@@ -1,6 +1,6 @@
 # Set Helm Version GitHub Action (NOT MAINTAINED)
 
-Given the path to a directory containing a Helm `Chart.yaml`, sets the `version` and `appVersion` of the chart to the specified values. 
+Given the path to a directory containing a Helm `Chart.yaml`, sets the `version` and `appVersion` of the chart to the specified values.
 Used to programmatically edit version numbers before a release - preserving existing structure and comments inside of the `Chart.yaml`.
 
 ## Usage

@@ -46,7 +46,7 @@ then
 NOTE - no related images found injected as environment variables prefixed with ${RELATED_IMAGE_ENV_PREFIX}.
 
 If your Operator deploys an application container, it is recommended that you inject the container image reference
-as an environment variable, and define this environment variable in your Operator Deployment definition 
+as an environment variable, and define this environment variable in your Operator Deployment definition
 in your ClusterServiceVersion.
 
 Example:
@@ -67,7 +67,7 @@ fi
 # get unique refs only
 sorted_unique_refs=($(echo "${source_refs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
 
-echo  
+echo
 echo "The following refs were found:"
 for ref in "${sorted_unique_refs[@]}"
 do
@@ -79,7 +79,7 @@ echo
 for ref in "${sorted_unique_refs[@]}"
 do
   echo "Processing $ref..."
- 
+
   # if not a digest ref, skopeo inspect it.
   if ! [[ "$ref" =~ "@" ]]
   then

@@ -40,7 +40,7 @@ jobs:
               echo "Did not find expected chart version!"
               exit 1
           fi
-          
+
           if grep -Fxq "appVersion: v1.6.0" set-helm-version/_test/Chart.yaml
           then
               echo "Found expected app version"
