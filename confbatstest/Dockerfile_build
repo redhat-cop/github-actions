@@ -1,5 +1,5 @@
 # Konstraint Builder image
-FROM registry.access.redhat.com/ubi9/go-toolset@sha256:3403e282d00e6f667822a652fe6b17c0fc5fdb04cc28509eb515381fb8496b39 AS konstraint
+FROM registry.access.redhat.com/ubi9/go-toolset@sha256:703937e152d049e62f5aa8ab274a4253468ab70f7b790d92714b37cf0a140555 AS konstraint
 
 # renovate: datasource=github-releases depName=plexsystems/konstraint
 ARG KONSTRAINT_VERSION=v0.39.0
