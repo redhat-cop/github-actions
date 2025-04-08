@@ -19,7 +19,7 @@ RUN PATH="/usr/local/go/bin:$PATH" go install github.com/plexsystems/konstraint@
 USER 1001
 
 # Builder image
-FROM registry.access.redhat.com/ubi9/ubi:9.5-1739751568@sha256:d342aa80781bf41c4c73485c41d8f1e2dbc40ee491633d9cafe787c361dd44ff AS builder
+FROM registry.access.redhat.com/ubi9/ubi:9.5-1744101466@sha256:ea57285741f007e83f2ee20423c20b0cbcce0b59cc3da027c671692cc7efe4dd AS builder
 
 # renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=v3.17.1
