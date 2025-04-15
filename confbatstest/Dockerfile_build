@@ -2,7 +2,7 @@
 FROM registry.access.redhat.com/ubi9/go-toolset@sha256:8a9e1465ae487fa2b4a94d2baa249a8d59fb3d7e6884a7b22c783f494f4cfb01 AS konstraint
 
 # renovate: datasource=github-releases depName=plexsystems/konstraint
-ARG KONSTRAINT_VERSION=v0.39.0
+ARG KONSTRAINT_VERSION=v0.41.0
 
 # go1.23 not released yet - so need to manually upgrade
 USER root
