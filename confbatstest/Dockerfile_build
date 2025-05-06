@@ -62,7 +62,7 @@ RUN curl -L -o /tmp/kubeval-linux-amd64.tar.gz https://github.com/instrumenta/ku
     /tmp/kubeval --version
 
 # Runnable image
-FROM registry.access.redhat.com/ubi9/python-39:9.5-1745333506@sha256:f0706d250b9712a7544230a6ac8507ac46cfddd14e8016ab5f30bbaea9bf3a80
+FROM registry.access.redhat.com/ubi9/python-39:9.5-1745995112@sha256:59f3aa83a24152eeee04c27d4cc5c2b9f50519a67acc153cdb382ac914f3d503
 
 # renovate: datasource=github-releases depName=bats-core/bats-core
 ARG BATS_VERSION=master
