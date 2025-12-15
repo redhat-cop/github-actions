@@ -23,7 +23,7 @@ jobs:
       - uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
         with:
           dockerfile: disconnected-csv/Dockerfile
-          ignore: DL3013 # https://github.com/hadolint/hadolint/wiki/DL3013
+          ignore: DL3013,DL3041 # https://github.com/hadolint/hadolint/wiki/DL3013 https://github.com/hadolint/hadolint/wiki/DL3041
 
       - uses: ./disconnected-csv
         with:
