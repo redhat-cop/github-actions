@@ -22,7 +22,7 @@ USER 1001
 FROM registry.access.redhat.com/ubi9/ubi:9.7-1763340522@sha256:dcd8128d7620b06e4bce291f30db6ffcfa339b04e6d66081e36eb8e2b1b700f8 AS builder
 
 # renovate: datasource=github-releases depName=helm/helm
-ARG HELM_VERSION=v4.0.0
+ARG HELM_VERSION=v4.0.4
 # renovate: datasource=github-releases depName=stedolan/jq
 ARG JQ_VERSION=1.6
 # renovate: datasource=repology depName=homebrew/openshift-cli
