@@ -30,7 +30,7 @@ ARG OC_VERSION=4.20.6
 # renovate: datasource=github-releases depName=open-policy-agent/opa
 ARG OPA_VERSION=v1.10.1
 # renovate: datasource=github-releases depName=open-policy-agent/conftest
-ARG CONFTEST_VERSION=v0.59.0
+ARG CONFTEST_VERSION=v0.65.0
 # renovate: datasource=github-releases depName=instrumenta/kubeval
 ARG KUBEVAL_VERSION=latest
 
